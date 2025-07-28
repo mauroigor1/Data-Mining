@@ -1,0 +1,68 @@
+<!-- R Commander Markdown Template -->
+
+Replace with Main Title
+=======================
+
+### Your Name
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# include this code chunk as-is to set options
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+
+```{r echo=FALSE}
+# include this code chunk as-is to enable 3D graphs
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+```{r}
+EjemploAlgoritmosRecomendacion <- 
+  read.table("C:/Users/Katerin/Google Drive/2017/DATA MINING/L2-Algoritmos_de_recomendación/EjemploAlgoritmosRecomendacion.csv",
+   header=TRUE, sep=";", na.strings="NA", dec=",", row.names=1, 
+  strip.white=TRUE)
+```
+
+```{r}
+EjemploAlgoritmosRecomendacion.PCA<-EjemploAlgoritmosRecomendacion[, 
+  c("Velocidad.Entrega", "Precio", "Durabilidad", "Imagen.Producto", 
+  "Valor.Educativo", "Servicio.Retorno", "Tamano.Paquete", "Calidad.Producto",
+   "Numero.Estrellas")]
+res<-PCA(EjemploAlgoritmosRecomendacion.PCA , scale.unit=TRUE, ncp=5, graph 
+  = FALSE)
+res.hcpc<-HCPC(res ,nb.clust=-1,consol=FALSE,min=2,max=10,graph=TRUE)
+res.hcpc$data.clust[,ncol(res.hcpc$data.clust),drop=F]
+res.hcpc$desc.var
+res.hcpc$desc.axes
+res.hcpc$desc.ind
+plot.PCA(res, axes=c(1, 2), choix="ind", habillage="none", col.ind="black", 
+  col.ind.sup="blue", col.quali="magenta", label=c("ind", "ind.sup", "quali"),
+  new.plot=TRUE, title="Individuos")
+plot.PCA(res, axes=c(1, 2), choix="var", new.plot=TRUE, col.var="black", 
+  col.quanti.sup="blue", label=c("var", "quanti.sup"), lim.cos2.var=0, 
+  title="Variables")
+summary(res, nb.dec = 3, nbelements=10, nbind = 10, ncp = 3, file="")
+res$eig
+res$var
+res$ind
+dimdesc(res, axes=1:5)
+remove(EjemploAlgoritmosRecomendacion.PCA)
+```
+
+```{r}
+dimdesc(res, axes=1:5)
+```
+
+
+```{r}
+remove(EjemploAlgoritmosRecomendacion.PCA)
+```
+
+
+
