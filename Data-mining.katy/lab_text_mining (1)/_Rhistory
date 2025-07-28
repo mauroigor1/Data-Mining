@@ -1,0 +1,313 @@
+writeLines(strwrap(myCorpus[[190]]$content, 60))
+setwd("C:/Users/Katerin/Google Drive/2017/DATA MINING/lab_text_mining (1)")
+install.packages("twitteR", dependencies = TRUE)
+install.packages("ROAuth", dependencies = TRUE)
+library(twitteR)
+library(ROAuth)
+library(twitteR)
+library(RCurl)
+library(stringr)
+consumer_key <- '5GRib0s6FGCDaV47oxnQpY6RF'
+consumer_secret <- 'oFpw4aFlswsNoP4jwaxXXFNKDfH3n5B9O4zSwnuaG5s1wRd0zD'
+access_token <- '381435706-RnY8gfbmRK7sYOTfdVh60nn7KNOJCyehQ3QDFJr3'
+access_secret <- 'W2M6vGfqeOQJp6rpxGrR5c4ospzeA11VR02ltN3maMfmD'
+setup_twitter_oauth(consumer_key, consumer_secret, access_token,
+access_secret)
+setup_twitter_oauth(consumer_key, consumer_secret, access_token,
+access_secret)
+consumer_key <- '5GRib0s6FGCDaV47oxnQpY6RF'
+consumer_secret <- 'oFpw4aFlswsNoP4jwaxXXFNKDfH3n5B9O4zSwnuaG5s1wRd0zD'
+access_token <- '381435706-RnY8gfbmRK7sYOTfdVh60nn7KNOJCyehQ3QDFJr3'
+access_secret <- 'W2M6vGfqeOQJp6rpxGrR5c4ospzeA11VR02ltN3maMfmD'
+setup_twitter_oauth(consumer_key, consumer_secret, access_token,
+access_secret)
+help("searchTwitteR")
+tweets <- searchTwitter("#ChilePortugal"+"CopaConfederaciones" ,n=3200)
+tweets <- searchTwitter("#ChilePortugal+CopaConfederaciones" ,n=3200)
+tweets <- searchTwitter("#ChilePortugal"+"#CopaConfederaciones" ,n=3200)
+tweets <- searchTwitter("#ChilePortugal+#CopaConfederaciones" ,n=3200)
+tweets <- searchTwitter("#chileportugal+#CopaConfederaciones" ,n=3200)
+tweets <- searchTwitter("#CopaConfederaciones" ,n=3200)
+(n.tweet <- length(tweets))
+tweets.df <- twListToDF(tweets)
+tweets.df[200, c("id", "created", "screenName", "replyToSN",
+"favoriteCount", "retweetCount", "longitude", "latitude", "text")]
+writeLines(strwrap(tweets.df$text[190], 60))
+library(tm)
+myCorpus <- Corpus(VectorSource(tweets.df$text))
+myCorpus[[200]]
+myCorpus[[200]]
+myCorpus <- tm_map(myCorpus, content_transformer(tolower))
+removeURL <- function(x) gsub("http[^[:space:]]*", "", x)
+myCorpus[[200]]
+removeNumPunct <- function(x) gsub("[^[:alpha:][:space:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeNumPunct))
+myCorpus[[200]]
+myCorpus[[200]]
+myCorpus[[200]]
+myCorpusCopy <- myCorpus
+myCorpus <- tm_map(myCorpus, PlainTextDocument)
+library(SnowballC)
+myCorpus <- tm_map(myCorpus, stemDocument)
+myCorpus <- tm_map(myCorpus, stripWhitespace)
+stemCompletion2 <- function(x, dictionary) {
+x <- unlist(strsplit(as.character(x), " "))
+x <- x[x != ""]
+x <- stemCompletion(x, dictionary=dictionary)
+x <- paste(x, sep="", collapse=" ")
+PlainTextDocument(stripWhitespace(x))
+}
+library(tm)
+# Construiremos un corpus con los twitts descargados
+myCorpus <- Corpus(VectorSource(tweets.df$text))
+myCorpus[[200]]
+# removiendo los emojis
+#myCorpus <- tm_map(myCorpus, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
+myCorpus[[200]]
+# convirtiendo todo a minusculas
+myCorpus <- tm_map(myCorpus, content_transformer(tolower))
+myCorpus[[200]]
+# removiendo URLs
+removeURL <- function(x) gsub("http[^[:space:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeURL))
+myCorpus[[200]]
+# removiendo cualquier otro simbolo raro
+removeNumPunct <- function(x) gsub("[^[:alpha:][:space:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeNumPunct))
+myCorpus[[200]]
+# removiendo stopwords
+myCorpus <- tm_map(myCorpus, removeWords, stopwords("spanish"))
+myCorpus[[200]]
+# removiendo espacios en blanco extras (pudieron quedar ahi luego de remover los stopwords
+myCorpus <- tm_map(myCorpus, stripWhitespace)
+myCorpus[[200]]
+# guardaremos una copia para realizar otros analisis despues
+myCorpusCopy <- myCorpus
+# Nos aseguramos que el corpus es texto plano
+myCorpus <- tm_map(myCorpus, PlainTextDocument)
+#Vamos ahora a cargar el paquete SnowballC para hacer Stemming, esto es borrar los sufijos de las palabras
+#para dejarlas en su raiz
+#install.packages("SnowballC", dependencies = TRUE)
+library(SnowballC)
+myCorpus <- tm_map(myCorpus, stemDocument)
+# Quitamos los espacios que han salido con tanto retoque
+myCorpus <- tm_map(myCorpus, stripWhitespace)
+tweets.df[200, c("id", "created", "screenName", "replyToSN",
+"favoriteCount", "retweetCount", "longitude", "latitude", "text")]
+writeLines(strwrap(tweets.df$text[190], 60))
+library(tm)
+myCorpus <- Corpus(VectorSource(tweets.df$text))
+myCorpus[[200]]
+myCorpus[[200]]
+myCorpus <- tm_map(myCorpus, content_transformer(tolower))
+myCorpus[[200]]
+removeURL <- function(x) gsub("http[^[:space:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeURL))
+myCorpus[[200]]
+removeNumPunct <- function(x) gsub("[^[:alpha:][:space:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeNumPunct))
+myCorpus[[200]]
+myCorpus <- tm_map(myCorpus, removeWords, stopwords("spanish"))
+myCorpus[[200]]
+myCorpus <- tm_map(myCorpus, stripWhitespace)
+myCorpus[[200]]
+myCorpusCopy <- myCorpus
+myCorpus <- tm_map(myCorpus, PlainTextDocument)
+library(SnowballC)
+myCorpus <- tm_map(myCorpus, stemDocument)
+myCorpus <- tm_map(myCorpus, stripWhitespace)
+wordFreq <- function(corpus, word) { results <- lapply(corpus,
+function(x) { grep(as.character(x), pattern=paste0("\\<",word)) } )
+}
+tdm <- TermDocumentMatrix(myCorpus,
+control = list(wordLengths = c(1, Inf)))
+tdm
+tdm <- TermDocumentMatrix(myCorpus,
+control = list(wordLengths = c(1, 3000)))
+tdm <- TermDocumentMatrix(myCorpus,
+control = list(wordLengths = c(2, Inf)))
+help("TermDocumentMatrix")
+myCorpus[[200]]
+consumer_key <- '5GRib0s6FGCDaV47oxnQpY6RF'
+consumer_secret <- 'oFpw4aFlswsNoP4jwaxXXFNKDfH3n5B9O4zSwnuaG5s1wRd0zD'
+access_token <- '381435706-RnY8gfbmRK7sYOTfdVh60nn7KNOJCyehQ3QDFJr3'
+access_secret <- 'W2M6vGfqeOQJp6rpxGrR5c4ospzeA11VR02ltN3maMfmD'
+setup_twitter_oauth(consumer_key, consumer_secret, access_token,
+access_secret)
+tweets <- searchTwitter("#CopaConfederaciones" ,n=3200)
+(n.tweet <- length(tweets))
+tweets.df <- twListToDF(tweets)
+tweets.df[200, c("id", "created", "screenName", "replyToSN",
+"favoriteCount", "retweetCount", "longitude", "latitude", "text")]
+writeLines(strwrap(tweets.df$text[190], 60))
+library(tm)
+myCorpus <- Corpus(VectorSource(tweets.df$text))
+myCorpus[[200]]
+myCorpus[[200]]
+myCorpus <- tm_map(myCorpus, content_transformer(tolower))
+myCorpus[[200]]
+removeURL <- function(x) gsub("http[^[:space:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeURL))
+myCorpus[[200]]
+removeNumPunct <- function(x) gsub("[^[:alpha:][:space:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeNumPunct))
+myCorpus[[200]]
+myCorpus <- tm_map(myCorpus, removeWords, stopwords("spanish"))
+myCorpus[[200]]
+myCorpus <- tm_map(myCorpus, stripWhitespace)
+myCorpus[[200]]
+myCorpusCopy <- myCorpus
+myCorpus <- tm_map(myCorpus, PlainTextDocument)
+library(SnowballC)
+myCorpus <- tm_map(myCorpus, stemDocument)
+myCorpus <- tm_map(myCorpus, stripWhitespace)
+wordFreq <- function(corpus, word) { results <- lapply(corpus,
+function(x) { grep(as.character(x), pattern=paste0("\\<",word)) } )
+}
+tdm <- TermDocumentMatrix(myCorpus,
+control = list(wordLengths = c(1, Inf)))
+tdm
+(freq.terms <- findFreqTerms(tdm, lowfreq = 20))
+help("VectorSource")
+myCorpus <- Corpus(VectorSource(myCorpus))
+wordFreq <- function(corpus, word) { results <- lapply(corpus,
+function(x) { grep(as.character(x), pattern=paste0("\\<",word)) } )
+}
+tdm <- TermDocumentMatrix(myCorpus,
+control = list(wordLengths = c(1, Inf)))
+(freq.terms <- findFreqTerms(tdm, lowfreq = 20))
+term.freq <- rowSums(as.matrix(tdm))
+term.freq <- subset(term.freq, term.freq >= 20)
+df <- data.frame(term = names(term.freq), freq = term.freq)
+(freq.terms <- findFreqTerms(tdm, lowfreq = 30))
+term.freq <- rowSums(as.matrix(tdm))
+term.freq <- subset(term.freq, term.freq >= 30)
+df <- data.frame(term = names(term.freq), freq = term.freq)
+library(ggplot2)
+ggplot(df, aes(x=term, y=freq)) + geom_bar(stat="identity") +
+xlab("Terms") + ylab("Count") + coord_flip() +
+theme(axis.text=element_text(size=7))
+m <- as.matrix(tdm)
+(freq.terms <- findFreqTerms(tdm, lowfreq = 100))
+term.freq <- rowSums(as.matrix(tdm))
+term.freq <- subset(term.freq, term.freq >= 100)
+df <- data.frame(term = names(term.freq), freq = term.freq)
+library(ggplot2)
+ggplot(df, aes(x=term, y=freq)) + geom_bar(stat="identity") +
+xlab("Terms") + ylab("Count") + coord_flip() +
+theme(axis.text=element_text(size=7))
+m <- as.matrix(tdm)
+word.freq <- sort(rowSums(m), decreasing = T)
+install.packages("wordcloud", dependencies = TRUE)
+pal <- brewer.pal(9, "BuGn")[-(1:4)]
+library(wordcloud)
+wordcloud(words = names(word.freq), freq = word.freq, min.freq = 3,
+random.order = F, colors = pal)
+which(names(word.freq)==c('cuentapublica', 'rt'))
+word.freq[1]
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c('cuentapublica', 'rt'))], freq = word.freq[-c(1,2)], min.freq = 3,
+random.order = F, colors = pal)
+findAssocs(tdm, "presidenta", 0.2)
+findAssocs(tdm, "mitad", 0.2)
+library(topicmodels)
+dtm <- as.DocumentTermMatrix(tdm)
+lda <- LDA(dtm, k = 8) # 8 topicos mas importantes
+install.packages('topicmodels', dependencies = TRUE)
+library(wordcloud)
+wordcloud(words = names(word.freq), freq = word.freq, min.freq = 3,
+random.order = F, colors = pal)
+pal <- brewer.pal(9, "BuGn")[-(1:4)]
+wordcloud(words = names(word.freq), freq = word.freq, min.freq = 3,
+random.order = F, colors = pal)
+which(names(word.freq)==c('copaconfederacion', 'rt'))
+word.freq[1]
+wordcloud(words = names(word.freq), freq = word.freq, min.freq = 70,
+random.order = F, colors = pal)
+which(names(word.freq)==c('copaconfederacion', 'rt'))
+word.freq[1]
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c('copaconfederacion', 'rt'))], freq = word.freq[-c(1,2)], min.freq = 3,
+random.order = F, colors = pal)
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c('copaconfederacion', 'rt'))], freq = word.freq[-c(1,2)], min.freq = 70,
+random.order = F, colors = pal)
+findAssocs(tdm, "presidenta", 0.2)
+word.freq[1]
+word.freq[2]
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c('copaconfederacion', 'rt'))], freq = word.freq[-c(1,2)], min.freq = 70,
+random.order = F, colors = pal)
+library(ggplot2)
+ggplot(df, aes(x=term, y=freq)) + geom_bar(stat="identity") +
+xlab("Terms") + ylab("Count") + coord_flip() +
+theme(axis.text=element_text(size=7))
+m <- as.matrix(tdm)
+word.freq <- sort(rowSums(m), decreasing = T)
+install.packages("wordcloud", dependencies = TRUE)
+install.packages("wordcloud", dependencies = TRUE)
+pal <- brewer.pal(9, "BuGn")[-(1:4)]
+library(wordcloud)
+wordcloud(words = names(word.freq), freq = word.freq, min.freq = 70,
+random.order = F, colors = pal)
+which(names(word.freq)==c('copaconfederacion', 'rt'))
+which(names(word.freq)==c('copaconfederacion','rt'))
+which(names(word.freq)==c('copaconfederacio','rt'))
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c('copaconfederacion', 'rt'))], freq = word.freq[-c(1,2)], min.freq = 70,
+random.order = F, colors = pal)
+which(names(word.freq)==c('rt'))
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c('copaconfederacion', 'rt'))], freq = word.freq[-c(1,2)], min.freq = 70,
+random.order = F, colors = pal)
+install.packages('topicmodels', dependencies = TRUE)
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c(rt'))], freq = word.freq[-c(1,2)], min.freq = 70,
+random.order = F, colors = pal)
+# que palabras estan asociadas con 'presidenta'?
+#findAssocs(tdm, "presidenta", 0.2)
+# que palabras estan asociadas con  'ser'?
+#findAssocs(tdm, "mitad", 0.2)
+#Graficando las asociaciones
+#install.packages('graph', dependencies = TRUE)
+#install.packages('Rgraphviz', dependencies = TRUE)
+#library(graph)
+#library(Rgraphviz)
+#plot(tdm, term = freq.terms, corThreshold = 0.1, weighting = T)
+#construyendo el modelo de topicos
+install.packages('topicmodels', dependencies = TRUE)
+library(topicmodels)
+dtm <- as.DocumentTermMatrix(tdm)
+lda <- LDA(dtm, k = 8) # 8 topicos mas importantes
+term <- terms(lda, 7) # primeros siete terminos en cada topico
+(term <- apply(term, MARGIN = 2, paste, collapse = ", "))
+topics <- topics(lda) # primer topico identificado en cada twitt
+topics <- data.frame(date=as.Date(tweets.df$created), topic=topics)
+#Grafica de los topicos
+ggplot(topics, aes(date, fill = term[topic])) +
+geom_density(position = "stack")
+##analisis de sentimientos
+#############Dificil en espanol, librerias no disponibles en MAC o en la ultima version de R###########
+# instalando paquetes
+require(devtools)
+install_github("sentiment140", "okugami79")
+# analisis de sentimientos
+#install.packages('sentiment', dependencies = TRUE)
+library(sentiment)
+sentiments <- sentiment(tweets.df$text)
+table(sentiments$polarity)
+# grafico de sentimientos
+sentiments$score <- 0
+sentiments$score[sentiments$polarity == "positive"] <- 1
+sentiments$score[sentiments$polarity == "negative"] <- -1
+sentiments$date <- as.Date(tweets.df$created)
+result <- aggregate(score ~ date, data = sentiments, sum)
+plot(result, type = "l")
+######################################################################################################
+# Estudiando la estructura de la red
+user <- getUser("biobio")
+user$toDataFrame()
+friends <- user$getFriends() # a quien sigue este usuario
+wordcloud(words = names(word.freq)[which(names(word.freq)!=c('rt'))], freq = word.freq[-c(1,2)], min.freq = 70,
+random.order = F, colors = pal)
+install.packages('topicmodels', dependencies = TRUE)
+dtm <- as.DocumentTermMatrix(tdm)
+lda <- LDA(dtm, k = 8) # 8 topicos mas importantes
+install.packages("topicmodels", dependencies = TRUE)
+install.packages("topicmodels", dependencies = TRUE)
+library(topicmodels)
+dtm <- as.DocumentTermMatrix(tdm)
+plot(tdm, term = freq.terms, corThreshold = 0.1, weighting = T)

@@ -1,0 +1,512 @@
+b<-c("aire","mar","tierra")
+c<-c(FALSE,true)
+c<-c(FALSE,TRUE,FALSE)
+df<-data.frame(a,b,c)
+df
+df[1,c(2,3)]
+df$b
+airquality[1:10]
+airquality[1:10,]
+h=airquality[1:10,]
+boxplot(h)
+summary(h)
+cd
+pws
+pwd
+pwd
+pwd
+ls
+mydata_txt<-read.table("C:\Users\alumno\Documents\mydata.txt")
+mydata_txt<-read.table("C:\users\alumno\Documents\mydata.txt")
+mydata_txt<-read.table("\Users\alumno\Documents\mydata.txt")
+mydata_txt<-read.table("C:\Users\alumno\Documents\mydata.txt")
+getwd()
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+view(mydata_txt)
+View(mydata_txt)
+View(mydata_txt)
+view(mydata_txt)
+View(mydata_txt)
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt
+library(FactorMineR)
+library(ggplot2)
+library(calibrate)
+library(lattice)
+library(FactoMineR)
+library(ggplot2)
+library(calibrate)
+library(lattice)
+install.packages("FactoMineR", dependencies = TRUE)
+install.packages("calibrate", dependencies = TRUE)
+setwd("C:/Users/alumno/Desktop/Laboratorio_II")
+setwd("C:/Users/alumno/Desktop/Laboratorio_II")
+iris2
+iris
+iris[,1:4]
+A <- scale(matrix(1,2,3,4,5,6))
+A <- scale(matrix(c(1,2,3,4,5,6), nrow = 2, nrow = 3))
+A <- scale(matrix(c(1,2,3,4,5,6), nrow = 3, nrow = 2))
+A <- scale(matrix(c(1,2,3, 4,5,6), nrow = 2, ncol = 3))
+A
+matrix(c(1,2,3, 4,5,6), nrow = 2, ncol = 3)
+A <- scale(matrix(c(1,2,3, 4,5,6), nrow = 2, ncol = 3), scale = FALSE)
+A
+A <- scale(matrix(c(1,2,3, 4,5,6), nrow = 2, ncol = 3), scale = FALSE)^2
+A
+A <- scale(matrix(c(2,2,3, 4,5,6), nrow = 2, ncol = 3), scale = FALSE)
+A
+A <- scale(matrix(c(2,2,3, 4,5,6), nrow = 2, ncol = 3))
+A
+A <- scale(matrix(c(2,2,3, 4,5,6), nrow = 2, ncol = 3), center = FALSE, scale = FALSE)
+A
+sd(c(3,4))
+0,5/sd(c(3,4))
+0.5/sd(c(3,4))
+install.packages("faraway")
+library(faraway)
+data("cheddar")
+cheddar
+fit<- lm(taste~ Acetic, data= cheddar)
+fit
+plot(cheddar$Acetic,cheddar$taste)
+abline(fit,col="red") ##linea de regresion de nuestro modelo
+abline(fit,col=3) ##linea de regresion de nuestro modelo
+summary(fit)
+anova(fit)
+SCE<- sum((fit$residuals)^2)
+sum((cheddar$taste - fit$fitted.values)^2)
+p<- 1
+SCR<- sum((fit$fitted.values - mean(cheddar$taste))^2)
+n<- nrow(cheddar)
+n<- nrow(cheddar)
+n
+Fc<- (SCR/p)/(SCE/(n-2))
+Sxx<- sum((cheddar$Acetic - mean(cheddar$Acetic))^2)
+View(cheddar)
+View(cheddar)
+Sxx
+Tc<- 15.648/sqrt((5348.745/28)/Sxx9
+Tc<- 15.648/sqrt((5348.745/28)/Sxx
+Tc<- 15.648/sqrt((5348.745/28)/Sxx)
+Tc^2
+Ft<- qf(0.95,1,28)
+Ft
+rendimiento<- c(200,220,210,80,78,89,120,130,150,80,78,85)
+zapatillas<- c("Adidas","Adidas","Adidas","rebook","rebook","rebook","Nike","Nike","Nike","zico","zico","zico")
+datos<- cbind(rendimiento,zapatillas_)
+datos<- cbind(rendimiento,zapatillas)
+rendimiento
+zapatillas
+m1<- lm(rendimiento ~ zapatillas)
+anova(ml)
+anova(m1)
+summary(m1)
+ruta<- file.choose()
+datos<- read.table(ruta, header = TRUE)
+datos
+ruta<- file.choose()
+datos<- read.table(ruta, header = TRUE)
+datos
+plot(datos$Año, datos$Hombres200m)
+modelo<. lm(Año~ Hombres200m, dat=datos)
+summary(modelos)
+anova(modelo)
+SCE<- sum((modelo$residuals)^2)
+p<- 1
+SCR<- sum((modelo$fitted.values - mean(datos$Hombres200m))^2)
+n<- nrow(datos)
+n
+Fc<- (SCR/p)/(SCE/(n-2))
+Ft<- qf(0.95,1,20)
+Ft
+Sxx<- sum((datos$Hombres200m - mean(datos$Hombres200m))^2)
+Sxx
+Tc<- 15.648/sqrt((5348.745/28)/Sxx)
+Tc^2
+abline(modelo, col=3)
+abline(modelo, col=5)
+y<- anima.sim(list(order=c(0,0,1),ma=0.7),n=300)
+y<- arima.sim(list(order=c(0,0,1),ma=0.7),n=300)
+ts.plot(y)
+acf(y)
+par(mfrow=c(2,1))
+ts.plot(y)
+acf(y)
+var(y)
+mean(y)
+acf(y,plot=FALSE)
+x<- arima.sim(list(order=c(0,0,2),ma=c(0.3,0.8)),n=300)
+par(mfrow=c(2,1))
+ts.plot(x)
+acf(x)
+var(x)
+mean(x)
+z<- arima.sim(list(order=c(1,0,0),ar=0.6),n=300)
+z<- arima.sim(list(order=c(1,0,0),ar=0.6),n=300)
+par(mfrow=c(2,1))
+ts.plot(z)
+acf(z)
+z<- arima.sim(list(order=c(1,0,0),ar=0.75),n=300)
+par(mfrow=c(2,1))
+ts.plot(z)
+acf(z)
+var(z)
+d<-array(0,c(20,20))
+print(d)
+d
+library(rattle)
+install.packages(rattle)
+install.packages(rattle, dependencies = TRUE)
+install.packages("rattle", dependencies = TRUE)
+5+5
+library("rattle")
+library("rattle")
+rattle()
+set.seed(20)
+q <- seq(from=0, to=20, by=0.1)
+# Funcion Ideal:
+y <- 500 + 0.4 * (q-10)^3
+# Generamos un error y lo agregamos al valor ideal (y):
+error <- rnorm(length(q), mean=10, sd=80)
+error.y <- y + error
+# Graficamos
+plot(q, error.y, col='deepskyblue4',
+xlab='q', main='Datos Observados')
+lines(q, y, col='firebrick1', lwd=3)
+# Evaluamos el coeficiente de correlacion de las variables
+Sxy <- sum( (error.y - mean(error.y)) * (q - mean(q)) )
+Sxy2 <- sqrt( sum((error.y - mean(error.y))^2) * sum((q - mean(q))^2 ) )
+rho <- Sxy/Sxy2
+#cor(error.y,q)
+# Modelo de regresion lineal con respecto a la media
+m1 <- lm(error.y ~ 1)
+summary(m1)
+# Polinomio de orden 3
+model <- lm(error.y ~ poly(q,3))
+summary(model)
+# Evaluamos el ajuste grafico de los modelos
+points(m1$fitted.values, col="red")
+points(q,model$fitted.values, col="red")
+# Intervalos de confianza para los coeficientes
+confint(model, level=0.95)
+# Valores predichos y intervalos de confianza:
+predicted.intervals <- predict(model,data.frame(x=q),
+interval='confidence', level=0.99)
+# Agregamos lineas a la grÃ¡fica ya exitente:
+plot(q, error.y, col='deepskyblue4',
+xlab='q', main='Datos Observados')
+lines(q,predicted.intervals[,1],col='green',lwd=2) #ajuste
+lines(q,predicted.intervals[,2],col='black',lwd=1) #inferior
+lines(q,predicted.intervals[,3],col='black',lwd=1) #superior
+# Agregamos la leyenda:
+legend("bottomright",c("Obs","Error","Predichos"),
+col=c("deepskyblue4","red","green"), lwd=3)
+#-#-#-#-#-#-#-#-#-#-#-#
+#### Ejemplo nÂ° 2 ####
+#-#-#-#-#-#-#-#-#-#-#
+### Conjunto de datos simulados (idealizados) ###
+### CROP YIELD LOSS V/S WEED BIOMASS ####
+set.seed(123)
+densidad <- as.numeric(seq(0,1000,10)) # rangos hipoteticos de las variables explicativas.
+error <- rnorm(n = length(densidad), mean = 0, sd = 20) # errores normalmente distribuidos
+A = 100 # parametro para la asintota = 100%
+I = 1 # parametro para la pendiente = 1
+# Funcion de hiperbola rectangular
+YL = I*densidad/(1+(I/A)*densidad) + error
+# perdida de rendimiento (en la cosecha) + error aleatorio
+plot(densidad, YL,  col='deepskyblue4') # idealizado pero subreal para este tipo de estudios
+### Modificando el conjunto de datos (mÃ¡s realistas) ###
+# ...
+# (1) Una pÃ©rdida mÃ¡xima de rendimiento del 100% y
+# (2) la variabilidad decrece para valores de densidad altos.
+# buscamos los de densidad >=500 y YL <=95 y los llamamos:
+temp.logica <- densidad >= 500 & YL <= 95
+# creamos un error del tamaÃ±o de "temp.logica"
+nuevo.error <- rnorm(n = length(temp.logica[temp.logica==TRUE]), mean = 0, sd = 5)
+realista.YL<-ifelse(densidad >= 500 & YL <= 100, 100 - abs(nuevo.error),
+ifelse(YL >= 100, 100, YL))
+# Evaluamos el coeficiente de correlaciÃ³n
+cor(densidad,realista.YL)
+# Graficamos nuestros nuevos datos
+plot(densidad, realista.YL,
+xlab = expression(Weed ~ biomass ~ (g ~ m^{-2})),
+ylab = "Crop yield loss (%)") # conjunto de datos mas realistas
+### Modelo de hiperbola rectangular ###
+mod.1 <- nls(realista.YL ~ I*densidad/(1+(I/A)*densidad),
+start = list (I= 1, A=100),
+trace = T)
+summary(mod.1)
+# Extraemos los coeficientes
+I<-summary(mod.1)$coefficients[1,1]
+A<-summary(mod.1)$coefficients[2,1]
+# FunciÃ³n No Lineal
+# Valores de "variable respuesta" ideales
+pred.YL <- I*densidad / (1 + (I/A)*densidad)
+lines(pred.YL~densidad)
+ml1 <- lm(realista.YL ~ densidad)
+lines(ml1$fitted.values ~ densidad, col="red")
+densidad2 <- densidad^2
+ml2 <- lm(realista.YL ~ densidad + densidad2)
+lines(ml2$fitted.values ~ densidad, col="green")
+densidad3 <- densidad^3
+ml3 <- lm(realista.YL ~ densidad + densidad2 + densidad3)
+lines(ml3$fitted.values ~ densidad, col="blue")
+anova(mod.1, ml1, ml2, ml3)
+AIC(mod.1,ml1,ml2,ml3)
+plot(q, error.y, col='deepskyblue4',
+xlab='q', main='Datos Observados')
+lines(q, y, col='firebrick1', lwd=3)
+set.seed(20)
+q <- seq(from=0, to=20, by=0.1)
+y <- 500 + 0.4 * (q-10)^3
+error <- rnorm(length(q), mean=10, sd=80)
+error.y <- y + error
+plot(q, error.y, col='deepskyblue4',
+xlab='q', main='Datos Observados')
+lines(q, y, col='firebrick1', lwd=3)
+Sxy <- sum( (error.y - mean(error.y)) * (q - mean(q)) )
+Sxy2 <- sqrt( sum((error.y - mean(error.y))^2) * sum((q - mean(q))^2 ) )
+rho <- Sxy/Sxy2
+m1 <- lm(error.y ~ 1)
+summary(m1)
+model <- lm(error.y ~ poly(q,3))
+summary(model)
+points(m1$fitted.values, col="red")
+points(q,model$fitted.values, col="red")
+confint(model, level=0.95)
+predicted.intervals <- predict(model,data.frame(x=q),
+interval='confidence', level=0.99)
+plot(q, error.y, col='deepskyblue4',
+xlab='q', main='Datos Observados')
+lines(q,predicted.intervals[,1],col='green',lwd=2) #ajuste
+lines(q,predicted.intervals[,2],col='black',lwd=1) #inferior
+lines(q,predicted.intervals[,3],col='black',lwd=1) #superior
+legend("bottomright",c("Obs","Error","Predichos"),
+col=c("deepskyblue4","red","green"), lwd=3)
+summary(m1)
+m1 <- lm(error.y ~ 1)
+m1
+set.seed(123)
+densidad <- as.numeric(seq(0,1000,10)) # rangos hipoteticos de las variables explicativas.
+error <- rnorm(n = length(densidad), mean = 0, sd = 20) # errores normalmente distribuidos
+A = 100 # parametro para la asintota = 100%
+I = 1 # parametro para la pendiente = 1
+YL = I*densidad/(1+(I/A)*densidad) + error
+plot(densidad, YL,  col='deepskyblue4') # idealizado pero subreal para este tipo de estudios
+temp.logica <- densidad >= 500 & YL <= 95
+# creamos un error del tamaÃ±o de "temp.logica"
+nuevo.error <- rnorm(n = length(temp.logica[temp.logica==TRUE]), mean = 0, sd = 5)
+realista.YL<-ifelse(densidad >= 500 & YL <= 100, 100 - abs(nuevo.error),
+ifelse(YL >= 100, 100, YL))
+# Evaluamos el coeficiente de correlaciÃ³n
+cor(densidad,realista.YL)
+# Graficamos nuestros nuevos datos
+plot(densidad, realista.YL,
+xlab = expression(Weed ~ biomass ~ (g ~ m^{-2})),
+ylab = "Crop yield loss (%)")
+mod.1 <- nls(realista.YL ~ I*densidad/(1+(I/A)*densidad),
+start = list (I= 1, A=100),
+trace = T)
+summary(mod.1)
+I<-summary(mod.1)$coefficients[1,1]
+A<-summary(mod.1)$coefficients[2,1]
+pred.YL <- I*densidad / (1 + (I/A)*densidad)
+lines(pred.YL~densidad)
+ml1 <- lm(realista.YL ~ densidad)
+lines(ml1$fitted.values ~ densidad, col="red")
+densidad2 <- densidad^2
+ml2 <- lm(realista.YL ~ densidad + densidad2)
+lines(ml2$fitted.values ~ densidad, col="green")
+ml3 <- lm(realista.YL ~ densidad + densidad2 + densidad3)
+lines(ml3$fitted.values ~ densidad, col="blue")
+anova(mod.1, ml1, ml2, ml3)
+AIC(mod.1,ml1,ml2,ml3)
+ruta<-file.choose()
+millaje<-read.table(ruta,header=T,sep=";")
+head(millaje)
+pairs(millaje)
+pairs(millaje)# solo para datos numericos.
+mpg<-millaje$mpg
+hp<-millaje$hp
+cor(mpg,hp)
+sum((hp-mean(hp)) *(mpg - mean(mpg)) )
+Sxy<-sum((hp-mean(hp)) *(mpg - mean(mpg)) )
+Sxy
+Sxy<-sqrt(sum((hp-mean(hp))^2)*
+sum((mpg-mean(mpg))^2))
+rho<-Sxy/Sxy2
+Sxy
+rho
+Sxy2<-sqrt(sum((hp-mean(hp))^2)*
+sum((mpg-mean(mpg))^2))
+Sxy2
+rho<-Sxy/Sxy2
+rho
+cor(mpg,hp)
+Sxy<-sum((hp-mean(hp)) *(mpg - mean(mpg)) )
+Sxy
+Sxy2<-sqrt(sum((hp-mean(hp))^2)*
+sum((mpg-mean(mpg))^2))
+rho<-Sxy/Sxy2
+rho
+cor(mpg,hp)
+plot(hp,mpg)
+l1<-lm(mpg~hp)
+summary(l1)
+abline(l1,col="red")
+anova(l1)
+l<-(0.1/2)
+length(hp)
+qt(.95,80)
+(100-mean(hp))^2
+(100-mean(hp))^2
+sum((hp-mean(hp))^2)
+predict(-l1,newdata = data.frame(hp=100),
+interval = "predict",level= 0.90)
+predict(l1,newdata = data.frame(hp=100),
+interval = "predict",level= 0.90)
+hp1<-1/hp
+modeloh<-lm(mpg~ hp1)
+modeloh
+summary(modeloh)
+intervalos.prediccion<-predict(modeloh,data.frame(x=hp),
+interval = "confidence",level = 0.99)
+plot(hp,mpg)
+lines(hp,intervalos.prediccion[,1],col="green",lwd=2)
+lines(hp,intervalos.prediccion[,2],col="black",lwd=1)
+lines(hp,intervalos.prediccion[,3],col="green",lwd=1)
+plot(hp,mpg,xlab="caballos de fuerza edl motor",
+ylab="millaspor galon")
+lines(hp,intervalos.prediccion[,1],col="green",lwd=2)
+lines(hp,intervalos.prediccion[,2],col="black",lwd=1)
+lines(hp,intervalos.prediccion[,3],col="green",lwd=1)
+plot(hp,mpg,xlab="caballos de fuerza edl motor",
+ylab="millas por galon")
+lines(hp,intervalos.prediccion[,1],col="green",lwd=2)
+lines(hp,intervalos.prediccion[,2],col="black",lwd=1)
+lines(hp,intervalos.prediccion[,3],col="green",lwd=1)
+help spread
+help(spread)
+set.seed(1234)
+x<-rpois(500,4)
+y<-mysummary(x)
+mysummary<-function(x,npar=TRUE,print=TRUE){
+if(!npar){
+center<-mean(x);spread<-sd(x)
+}else{
+center<-median(x);spread<-mad(x)
+}
+if(print & !npar){
+cat("Mean=",center,"\n","SD=",spread,"\n")
+}else if (print & npar){
+cat("Median=",center,"\n","MAD=",spread,"\n")
+}
+result<-list(center=center,spread=spread)
+return(result)
+}
+mysummary<-function(x,npar=TRUE,print=TRUE){
+if(!npar){
+center<-mean(x);spread<-sd(x)
+}else{
+center<-median(x);spread<-mad(x)
+}
+if(print & !npar){
+cat("Mean=",center,"\n","SD=",spread,"\n")
+}else if (print & npar){
+cat("Median=",center,"\n","MAD=",spread,"\n")
+}
+result<-list(center=center,spread=spread)
+return(result)
+}
+set.seed(1234)
+x<-rpois(500,4)
+y<-mysummary(x)
+x
+npar
+help npar
+Time<-2001:2010
+Tmean<-c(12.6,11.78,11.81,11.72,12.02,12.36,12.03,11.27,11.33,11.66)
+Prec <- c(737.11,737.87,774.95,844.55,764.03,757.43,741.17,793.50,820.42,796.80)
+Prec
+Tmean
+Time
+plot(Time,Tmean,type="o",col="red",xlab="Year",ylab="Tmean [dec C]",lwd=1.5,legend=c("Tmean"),bty="n",text.font=2,cex=1.0)
+Time <- 2001:2010
+Tmean <- c(12.06, 11.78,11.81,11.72,12.02,12.36,12.03,11.27,11.33,11.66)
+Prec <- c(737.11,737.87,774.95,844.55,764.03,757.43,741.17,793.50,820.42,796.80)
+plot(Time,Tmean,type="o",col="red",xlab="Year", ylab="Tmean [dec C]",lwd=1.5,
+main="Contiguous U.S. Annual Mean Temperature and Total Precipitation")
+legend(2000.5,12.55, col=c("red"),lty=1,lwd=2.0,
+legend=c("Tmean"),bty="n",text.font=2,cex=1.0)
+#Permite que una figura sea sobrepuesta en el primer plot
+par(new=TRUE)
+plot(Time, Prec,type="o",col="blue",lwd=1.5,axes=FALSE,xlab="",ylab="")
+legend(2000.5,848, col=c("blue"),lty=1,lwd=2.0,
+legend=c("Prec"),bty="n",text.font=2,cex=1.0)
+#Ocultar los ejes y asignar un eje y al lado 4 de la figura
+axis(4)
+mtext("Precipitation [mm]",side=4,line=3)
+#legend("topleft",col=c("red","blue"),lty=1,legend=c("Tmean","Prec"),cex=0.6)
+7#Plot two legends at the same time make it difficult to adjust the font size
+#because of different scale
+legend(2000.5,12.22, col=c("red"),lty=1,lwd=2.0,
+legend=c("Tmean"),bty="n",text.font=2,cex=1.0)
+legend(2000.5,12.55, col=c("red"),lty=1,lwd=2.0,
+legend=c("Tmean"),bty="n",text.font=2,cex=1.0)
+library(lattice)
+attach(mtcars)
+head(mtcars)
+tail(mtcars)
+is.factor(gear)
+gear.f
+gear.f<-factor(gear,levels=c(3,4,5),labels=c("3gears","4gears","5gears"))
+is.factor(gear.f)
+cyl<-factor(cyl,levels=c(4,6,8),labels=c("4cyl","6cyl","8cyl"))
+densityplot(~mpg,main="Density Plot",xlab="Miles per Gallon")
+train <- read.table('ZipDataTrainCod.csv', sep = ";", dec = ".", header = TRUE)
+setwd("C:/Users/alumno/Downloads/Arboles_de_decision")
+test <- read.table('ZipDataTestCod.csv', sep = ";", dec = ".", header = TRUE)
+train <- read.table('ZipDataTrainCod.csv', sep = ";", dec = ".", header = TRUE)
+modelosvm<-svm(Numero~.,data=train, kernel="linear")
+install.if.required <- function(x){
+if(!require(x, character.only=TRUE)){
+install.packages(x, dependencies = TRUE, character.only=TRUE)
+library(class, character.only=TRUE)
+}
+}
+if(!require(class)){
+install.packages("class", dependencies = TRUE)
+library(class)
+}
+if(!require(e1071)){
+install.packages("e1071", dependencies = TRUE)
+library(e1071)
+}
+if(!require(ROCR)){
+install.packages("ROCR", dependencies = TRUE)
+library(ROCR)
+}
+lapply(c("class", "e1071", "ROCR", "rpart"), install.if.required)
+train <- read.table('ZipDataTrainCod.csv', sep = ";", dec = ".", header = TRUE)
+test <- read.table('ZipDataTestCod.csv', sep = ";", dec = ".", header = TRUE)
+modelosvm<-svm(Numero~.,data=train, kernel="linear")
+prediccionsvm<-predict(modelosvm, test)
+head(train)
+prediccionsvm<-predict(modelosvm, test)
+MCsvm<-table(test,prediccionsvm) #table, matriz de contingencia
+MCsvm
+prediccionsvm
+MCsvm<-table(test$Numero,prediccionsvm) #table, matriz de contingencia
+MCsvm
+rattle()
+library("rattle")
+rattle()
+PGsvm<-(sum(diag(MCsvm)))/sum(MCsvm) #precisión
+PGsvm
