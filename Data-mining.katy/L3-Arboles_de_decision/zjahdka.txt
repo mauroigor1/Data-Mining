@@ -1,0 +1,21 @@
+Radial Basis
+Resumen del modelo SVM (construido con ksvm):
+
+Support Vector Machine object of class "ksvm" 
+
+SV type: C-svc  (classification) 
+ parameter : cost C = 1 
+
+Gaussian Radial Basis kernel function. 
+ Hyperparameter : sigma =  0.00269299818731879 
+
+Number of Support Vectors : 2435 
+
+Objective Function Value : -83.2623 -43.7438 -71.576 -31.0363 -57.1493 -77.9405 -31.7338 -60.4548 -13.3336 -65.2028 -78.6972 -50.2961 -91.8128 -85.1497 -46.9913 -129.2922 -18.6835 -89.2618 -108.6825 -75.1896 -60.0559 -75.5159 -41.3182 -40.4515 -47.3234 -87.2281 -71.1836 -55.9035 -96.6764 -21.9468 -69.4732 -30.0855 -140.847 -47.1922 -26.6257 -57.1805 -61.5416 -100.9487 -35.8876 -28.549 -37.8459 -26.9529 -51.0923 -23.1755 -18.7145 
+Training error : 0.008778 
+Probability model included. 
+
+Tiempo transcurrido: 42.60 segs
+
+Rattle marca de tiempo: 2017-06-08 12:34:20 Katerin
+======================================================================
