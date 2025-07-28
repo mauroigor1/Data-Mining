@@ -1,0 +1,512 @@
+sample(5,3)
+sample(5,3)
+set.seed(24)
+sample(5,3)
+sample(5,3)
+set.seed(24)
+sample(5,3)
+set.seed(24)
+sample(5,3)
+ll<-sample(20)
+ll
+sumll<-sum(ll)
+porb<-ll/sumll
+prob
+porb
+plot(prob)
+plot(porb)
+hist(porb)
+boxplot(porb)
+rnorm(100)
+hist(r)
+a0rnorm(100)
+a=rnorm(100)
+hist(a)
+plot(a)
+hist(a)
+a=rnorm(1000)
+plot(a)
+hist(a)
+a=rnorm(10000)
+hist(a)
+a=rnorm(100000)
+hist(a)
+mean(a)
+std(a)
+boxplot(a)
+a=rnorm(100000,4.5,1)
+hist(a)
+boxplot(a)
+plot(xx,type ="h", col="red", lwd=20) )
+plot(xx,type ="h", col="red", lwd=20)
+xx=rnorm(100)
+plot(xx,type ="h", col="red", lwd=20)
+plot(xx,type ="h", col="red", lwd=2)
+plot(xx,type ="h", col="red", lwd=1)
+plot(xx,type ="h", col="red", lwd=3)
+plot(xx, type="l",col="blue", lwd=5, xlab="xlabel", ylab ="y",main="main
+title")
+par(new=TRUE)
+plot(xx, type="l",col="red", lwd=5, xlab="xlabel", ylab="y",main="main title",
+axes=FALSE)
+2*1:15
+n<-10
+1:n-1
+1:(n-19
+q
+1:(n-1)
+?seq
+seq(1,10)
+seq(1,30)
+seq(1,30,2)
+seq(1,30)
+1:30
+seq(1,30),
+seq(from=1,to=30)
+seq(from=30,to=1)
+x=c(1,2,3)
+x<-c(1,2,3)
+x<-c(1,2,3,"banana")
+x
+y<-rep(x,2)
+y
+y<-seq(1,12)
+y
+T=20-6.5*y
+T
+plot(T)
+plot(T,y)
+y<-seq(0,12)
+plot(T,y)
+T=20-6.5*y
+plot(T,y)
+6371/20
+r<-0:6371:300
+r<-seq(0.0001,6371,300)
+4*3
+matrix(1:6,nrow=2)
+matrix(1:6,nrow=4)
+matrix(1:6,nrow=4,ncol=4)
+c(m,h)
+c("m","h")
+v <- c("bcA1", "bcA2", "blX1")
+w <- c("bcA2", "xA3")
+v
+w
+fsexo <- as.factor(sexo)
+sexo <- c("M","H","H","H","M","H")
+fsexo <- as.factor(sexo)
+fsexo
+nombre <- c("Ana","Luis","Pedro","Juan","Eva","Jorge")
+fnombre <- as.factor(nombre)
+fnombre
+nombre <- c("Ana","Luis","Pedro","Juan","Eva","Jorge")
+edad <- c(23,24,22,24,21,22)
+sexo <- c("M","H","H","H","M","H")
+fsexo <- as.factor(sexo)
+fnombre <- as.factor(nombre)
+amigos <- data.frame(fnombre,edad,fsexo)
+amigos
+nombre <- c("Ana","Luis","Pedro","Juan","Eva","Jorge")
+nombre <- as.factor(nombre)
+nombre
+nom <- c("Ana","Luis","Pedro","Juan","Eva","Jorge")
+edad <- c(23,24,22,24,21,22)
+sex <- c("M","H","H","H","M","H")
+sexo <- as.factor(sex)
+nombre <- as.factor(nom)
+amigos <- data.frame(nom,edad,sexo)
+amigos
+nombre <- c("Ana","Luis","Pedro","Juan","Eva","Jorge")
+edad <- c(23,24,22,24,21,22)
+sex <- c("M","H","H","H","M","H")
+sexo <- as.factor(sex)
+amigos <- data.frame(nombre,edad,sexo)
+amigos
+x <- seq(0,2*pi,length=100)
+plot(cos(x))
+plot(x,cos(x),col="red")
+help("plot")
+s=seq(-1,1);
+plot(s)
+plot(s,s)
+index(s)
+s
+x
+muertes<- read.table("http://www.udec.cl/~jbustosm/muertes.csv",
+header=TRUE, sep= ";")
+View(muertes)
+View(muertes)
+muertes
+muertes
+x<- muertes$porc.inmuniz
+y<- muertes$tasa.mort
+plot(x,y,
+xlab="porcentaje de inmunización",
+ylab="tasa de mortalidad")
+plot(x,y,
+xlab="porcentaje de inmunización",
+ylab="tasa de mortalidad",
+main="titulo")
+l1<- lsfit(x,y)
+l1
+l1<- lm(y~x)
+l1
+abline(l1,col="blue",lwd=2)
+abline(l1,col="6",lwd=2)
+resumen<- summary(l1)
+resumen
+abline(l1,col="blue",lwd=4)
+abline(l1,col="blue",lwd=100000)
+abline(l1,col="blue",lwd=2)
+abline(l1,col="blue",lwd=2)
+abline(l1,col="blue",lwd=2)
+abline(l1,col="blue",lwd=3)
+abline(l1,col="blue",lwd=2)
+l1<- lsfit(x,y)
+l1
+abline(l1,col="blue",lwd=2)
+abline(l1,col="6",lwd=2)
+l1<- lm(y~x)
+l1
+abline(l1,col="6",lwd=2)
+abline(l1,col="blue",lwd=2)
+plot(x,y,
+xlab="porcentaje de inmunización",
+ylab="tasa de mortalidad",
+main="titulo")
+abline(l1,col="blue",lwd=2)
+resumen
+a<-c(3,1,5,7,8,3)
+dim(a)=(2,3)
+dim(a)
+dim(a)<-c(2,3)
+a
+a<-c(3,1,5,7,8,3,byrow=TRUE)
+a
+dim(a)=(2,3)
+dim(a)<-c(2,3)
+mdat<-matrix(c(1,2,11,12,13),nrow=2,ncol=3,byrow=TRUE,dimnames=list("row1","row2"),("c1","c2","c3"))
+mdat<-matrix(c(1,2,11,12,13),nrow=2,ncol=3,byrow=TRUE,dimnames=list("row1","row2")("c1","c2","c3"))
+mdat<-matrix(c(1,2,11,12,13),nrow=2,ncol=3,byrow=TRUE,dimnames=list("row1","row2")("c1","c2","c3")))
+clearPushBack()
+clc
+x<-list(station="Vinadio",elev=1200,month=c("N","D","J"),snowdepth=c(6,21,44))
+x
+x[5]<-list(snowday=c(4,5,6))
+x
+names(x)[5]<-c("snowday")
+x
+y<-0
+z<-1
+y<-as.list(y)
+y
+z<-as.list(z)
+z
+xyz<-c(x,Y=y,Z=z)
+xyz
+x[[4]][1]
+x[[4]][2]
+x$elev
+x[[1]]
+summary(x)
+mode(x)
+mode(y)
+a=0
+a<-0
+mode(a)
+class(x)
+str(x)
+a<-c(1,2,3)
+b<-c("aire","mar","tierra")
+c<-c(FALSE,true)
+c<-c(FALSE,TRUE,FALSE)
+df<-data.frame(a,b,c)
+df
+df[1,c(2,3)]
+df$b
+airquality[1:10]
+airquality[1:10,]
+h=airquality[1:10,]
+boxplot(h)
+summary(h)
+cd
+pws
+pwd
+pwd
+pwd
+ls
+mydata_txt<-read.table("C:\Users\alumno\Documents\mydata.txt")
+mydata_txt<-read.table("C:\users\alumno\Documents\mydata.txt")
+mydata_txt<-read.table("\Users\alumno\Documents\mydata.txt")
+mydata_txt<-read.table("C:\Users\alumno\Documents\mydata.txt")
+getwd()
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+view(mydata_txt)
+View(mydata_txt)
+View(mydata_txt)
+view(mydata_txt)
+View(mydata_txt)
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt<-read.table("mydata.txt")
+mydata_txt
+library(FactorMineR)
+library(ggplot2)
+library(calibrate)
+library(lattice)
+library(FactoMineR)
+library(ggplot2)
+library(calibrate)
+library(lattice)
+install.packages("FactoMineR", dependencies = TRUE)
+install.packages("calibrate", dependencies = TRUE)
+setwd("C:/Users/alumno/Desktop/Laboratorio_II")
+setwd("C:/Users/alumno/Desktop/Laboratorio_II")
+help("scale")
+scale(c(1, 2, 3, 4))
+scale(c(1, 2, 3, 4), scale = FALSE)
+sum(scale(c(1, 2, 3, 4), scale = FALSE)^2)
+sum(scale(c(4, 1, 11, 13, 2, 7), scale = FALSE)^2)
+help("cutree")
+setwd("C:/Users/Katerin/Google Drive/2017/DATA MINING/L2-Algoritmos_de_recomendación")
+##Cargar librerias
+library(FactoMineR)
+library(ggplot2)
+library(calibrate)
+library(lattice)
+wss <- function(d) {
+sum(scale(d, scale = FALSE)^2)
+}
+#suma del cuadrado de las diferencias de cada dato con el promedios
+#o desviación estándar al cuadrado por n: cantidad de datos
+wrap <- function(i, hc, x) {
+cl <- cutree(hc, i)
+spl <- split(x, cl)
+wss <- sum(sapply(spl, wss))
+wss
+}
+iris2 <- iris[, 1:4]
+cl <- hclust(dist(iris2), method = "ward.D")
+res <- sapply(seq.int(1, nrow(iris2)), wrap, h = cl, x = iris2)
+plot(seq_along(res), res, type = "b", pch = 19)
+plot(seq_along(res[1:50]), res[1:50], type = "o", pch = 19)
+install.packages(FactorMineR, dependencies = TRUE)
+install.packages("FactoMineR", dependencies = TRUE)
+install.packages("calibrate", dependencies = TRUE)
+library(FactoMineR)
+library(ggplot2)
+library(calibrate)
+library(lattice)
+wss <- function(d) {
+sum(scale(d, scale = FALSE)^2)
+}
+#suma del cuadrado de las diferencias de cada dato con el promedios
+#o desviación estándar al cuadrado por n: cantidad de datos
+wrap <- function(i, hc, x) {
+cl <- cutree(hc, i)
+spl <- split(x, cl)
+wss <- sum(sapply(spl, wss))
+wss
+}
+iris2 <- iris[, 1:4]
+cl <- hclust(dist(iris2), method = "ward.D")
+res <- sapply(seq.int(1, nrow(iris2)), wrap, h = cl, x = iris2)
+plot(seq_along(res), res, type = "b", pch = 19)
+plot(seq_along(res[1:50]), res[1:50], type = "o", pch = 19)
+ward.D
+"ward.D"
+cl
+iris2
+help(iris)
+help(split)
+help(cutree)
+wrap
+res
+help(sapply)
+cl
+cutree(cl)
+cutree(cl, k=2)
+cutree(cl, h=2)
+seq.int(1, 5)
+seq.int(1, 10)
+h
+h=cl
+h
+type(h)
+typeof(h)
+plot(cl, main=hola)
+spl
+split(iris2,cl)
+cl
+split(iris2,cl)
+cutree(cl, k=c(2,2))
+cutre(cl, seq.int(1,10))
+cutree(cl, seq.int(1,10))
+max.print(cutree(cl, seq.int(1,10)))
+max.print
+A<-cutre(cl, seq.int(1,10))
+A<-cutree(cl, seq.int(1,10))
+View(A)
+plot(A)
+B<-cutree(cl, k=2)
+plot(B)
+5
+View(B)
+C<-cutree(cl, k=3)
+plot(C)
+plot(A)
+plot(index,A)
+plot(A[,10])
+plot(cl)
+mtcars
+plot(cl)
+cl
+split(iris2,cl)
+split(c(1,2),cl)
+split(iris2,2)
+iris2
+split(iris2,A)
+cat("\014")
+cat("\014")
+wss <- function(d) {
+sum(scale(d, scale = FALSE)^2)
+}
+#suma del cuadrado de las diferencias de cada dato con el promedios
+#o desviación estándar al cuadrado por n: cantidad de datos
+wrap <- function(i, hc, x) {
+cl <- cutree(hc, i)
+#dado un árbol hc resultante de hclust, cutree corta el árbol
+#en la cantidad de grupos deseados dados por i.
+#si i es escalar, entonces cutree entrega un vector con asignación de
+#cada individuo a un grupo
+#si i es un vector, entonces cutree entrega una matriz donde cada
+#columna j corresponde al elemento j de i, y la correspondiente
+#asignación de cada individuo a un grupo.
+spl <- split(x, cl)
+#Divide el vector x en grupos definidos por cl
+#split entrega una lista que contiene los valores para cada grupo
+wss <- sum(sapply(spl, wss))
+wss
+}
+iris2 <- iris[, 1:4] #estrae desde la primera hasta la cuarta columna
+#del conjunto de datos iris que trae incorporado R
+cl <- hclust(dist(iris2), method = "ward.D")
+#dist(iris2): matriz de distancias
+res <- sapply(seq.int(1, nrow(iris2)), wrap, hc = cl, x = iris2)
+plot(seq_along(res), res, type = "b", pch = 19)
+plot(seq_along(res[1:50]), res[1:50], type = "o", pch = 19)
+cl <- cutree(cl)
+library(FactoMineR)
+library(ggplot2)
+library(calibrate)
+library(lattice)
+wss <- function(d) {
+sum(scale(d, scale = FALSE)^2)
+}
+#suma del cuadrado de las diferencias de cada dato con el promedios
+#o desviación estándar al cuadrado por n: cantidad de datos
+wrap <- function(i, hc, x) {
+cl <- cutree(hc, i)
+#dado un árbol hc resultante de hclust, cutree corta el árbol
+#en la cantidad de grupos deseados dados por i.
+#si i es escalar, entonces cutree entrega un vector con asignación de
+#cada individuo a un grupo
+#si i es un vector, entonces cutree entrega una matriz donde cada
+#columna j corresponde al elemento j de i, y la correspondiente
+#asignación de cada individuo a un grupo.
+spl <- split(x, cl)
+print(spl)
+#Divide el vector x en grupos definidos por cl
+#split entrega una lista que contiene los valores para cada grupo
+wss <- sum(sapply(spl, wss))
+wss
+}
+iris2 <- iris[, 1:4] #estrae desde la primera hasta la cuarta columna
+#del conjunto de datos iris que trae incorporado R
+cl <- hclust(dist(iris2), method = "ward.D")
+#dist(iris2): matriz de distancias
+res <- sapply(seq.int(1, nrow(iris2)), wrap, hc = cl, x = iris2)
+plot(seq_along(res), res, type = "b", pch = 19)
+plot(seq_along(res[1:50]), res[1:50], type = "o", pch = 19)
+K <- cutree(cl, k=2)
+split(iris2,K)
+L <- split(iris2,K)
+M <- sapply(L,wss)
+wss(L[,1])
+wss(L[,2])
+L[,2]
+L[1,2]
+X<-matrix(c(1,2,3),c(2,4,5))
+X
+X<-matrix(c(1,2,3,4,4,6,7,1), nrow = 4, ncol=2)
+X
+scale(X, scale = FALSE)
+wss(X)
+scale(X, scale = FALSE)^2
+M
+sum(M)
+nrow(iris2)
+cutree(cl, seq.int(1, nrow(iris2)))
+Y <-cutree(cl, seq.int(1, nrow(iris2)))
+View(Y)
+View(Y)
+seq.int(1, nrow(iris2))
+res
+wrap(2,cl,iris2)
+wrap(2,cl,iris2)
+res
+View(iris2)
+View(iris2)
+help(hclust)
+help("PCA")
+??PCA
+??hclust
+help("hclust")
+??hclust
+?hclust
+help(kmeans)
+library(FactoMineR)
+library(Rcmdr)
+install.packages("Rcmdr", dependencies = TRUE)
+library(Rcmdr)
+rattle()
+library(rattle)
+install.packages("rattle", dependencies = TRUE)
+help("datasets")
+help("read.csv")
+setwd("C:/Users/Katerin/Google Drive/2017/DATA MINING/L2-Algoritmos_de_recomendación")
+??PCA
+#k-means (ejemplo algoritmos de recomendación)
+library(FactoMineR)
+setwd("C:/Users/Katerin/Google Drive/2017/DATA MINING
+/L2-Algoritmos_de_recomendación")
+datos <- read.csv("EjemplosAlgoritmosRecomendacion.csv",
+sep = ";", dec = ",")
+respca <- PCA(datos, ncp = 5)
+library(FactoMineR)
+setwd("C:/Users/Katerin/Google Drive/2017/DATA MINING
+/L2-Algoritmos_de_recomendación")
+datos <- read.csv("EjemploAlgoritmosRecomendacion.csv",
+sep = ";", dec = ",")
+respca <- PCA(datos, ncp = 5)
+respca
+respca <- prcomp(datos, ncp = 5)
+respca <- PCA(datos, ncp = 5)
+datos
+datos <- read.csv("EjemploAlgoritmosRecomendacion.csv",
+sep = ";", dec = ",")
+datos <- datos[,2:10]
+respca <- PCA(datos, ncp = 5)
+respca
+print(respca)
+respcom <- prcomp(datos)
+respcom
+sumary(respcom)
+summary(respcom)
+help("prcomp")
+summary(respca)
