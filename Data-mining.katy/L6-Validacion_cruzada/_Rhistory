@@ -1,0 +1,512 @@
+MC <- table(Actual, prediccion)
+prediccion
+muestra <- grupos[[1]]
+ttesting <- datos[muestra,]
+taprendizaje <- datos[-muestra,]
+modelo <- rpart(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+arb <- arb + MC[2,2]
+dim(prediccion)
+dim(Actual)
+Actual <- as.matrix(Actual)
+Actual
+dim(Actual)
+modelo <- rpart(chd~., data = taprendizaje, type = "class")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+arb <- arb + MC[2,2]
+dim(Actual)
+Actual <- ttesting$chd
+modelo <- rpart(chd~., data = taprendizaje, type = "class")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+arb <- arb + MC[2,2]
+modelo <- rpart(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting, type = "class")
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+arb <- arb + MC[2,2]
+set.seed(20)
+for(i in 1:n.promedio){
+grupos <- createFolds(1:n, n.grupos) #crea los 6 grupos
+svm <- 0
+knn <- 0
+bay <- 0
+arb <- 0
+bos <- 0
+pot <- 0
+rna <- 0
+for(k in 1:n.grupos){
+muestra <- grupos[[k]] #Tomamos como muestra cada grupo
+ttesting <- datos[muestra,] #Testeamos con los datos de la muestra
+taprendizaje <- datos[-muestra,] #Entrenamos con el resto de los datos
+#Modelo Máquina de soporte vectorial
+modelo <- svm(chd~., data = taprendizaje, kernel = "linear")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+svm <- svm + MC[2,2]
+ind[k] <- MC[2,2]
+#Modelo K vecinos más cercanos
+modelo <- train.kknn(chd~., data = taprendizaje, kmax = 7)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+knn <- knn + MC[2,2]
+#Modelo Bayes
+modelo <- naiveBayes(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+bay <- bay + MC[2,2]
+#Modelo Árbol
+modelo <- rpart(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting, type = "class")
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+arb <- arb + MC[2,2]
+#Modelo Bosques
+modelo <- randomForest(chd~., data = taprendizaje, ntree = 400, mtry = 3)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+bos <- bos + MC[2,2]
+#Modelo Potenciación
+modelo<- ada(chd~., data = taprendizaje, iter=20, type="real")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+pot <- pot + MC[2,2]
+}
+deteccion.svm[i] <- svm
+deteccion.knn[i] <- knn
+deteccion.bay[i] <- bay
+deteccion.bos[i] <- bos
+deteccion.pot[i] <- pot
+}
+deteccion.svm <- rep(0,n.promedio)
+deteccion.knn <- rep(0,n.promedio)
+deteccion.bay <- rep(0,n.promedio)
+deteccion.arb <- rep(0,n.promedio)
+deteccion.bos <- rep(0,n.promedio)
+deteccion.pot <- rep(0,n.promedio)
+deteccion.rna <- rep(0,n.promedio)
+set.seed(20)
+for(i in 1:n.promedio){
+grupos <- createFolds(1:n, n.grupos) #crea los 6 grupos
+svm <- 0
+knn <- 0
+bay <- 0
+arb <- 0
+bos <- 0
+pot <- 0
+rna <- 0
+for(k in 1:n.grupos){
+muestra <- grupos[[k]] #Tomamos como muestra cada grupo
+ttesting <- datos[muestra,] #Testeamos con los datos de la muestra
+taprendizaje <- datos[-muestra,] #Entrenamos con el resto de los datos
+#Modelo Máquina de soporte vectorial
+modelo <- svm(chd~., data = taprendizaje, kernel = "linear")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+svm <- svm + MC[2,2]
+ind[k] <- MC[2,2]
+#Modelo K vecinos más cercanos
+modelo <- train.kknn(chd~., data = taprendizaje, kmax = 7)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+knn <- knn + MC[2,2]
+#Modelo Bayes
+modelo <- naiveBayes(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+bay <- bay + MC[2,2]
+#Modelo Árbol
+modelo <- rpart(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting, type = "class")
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+arb <- arb + MC[2,2]
+#Modelo Bosques
+modelo <- randomForest(chd~., data = taprendizaje, ntree = 400, mtry = 3)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+bos <- bos + MC[2,2]
+#Modelo Potenciación
+modelo<- ada(chd~., data = taprendizaje, iter=20, type="real")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+pot <- pot + MC[2,2]
+}
+deteccion.svm[i] <- svm
+deteccion.knn[i] <- knn
+deteccion.bay[i] <- bay
+deteccion.arb[i] <- arb
+deteccion.bos[i] <- bos
+deteccion.pot[i] <- pot
+}
+plot(deteccion.svm, col = "magenta", type = "b",
+ylim = c(min(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot),
+max(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot) +20),
+main = "Deteccion del SI chd",
+xlab = "Numero de iteración",
+ylab = "Cantidad de SI")
+plot(deteccion.svm, col = "magenta", type = "b",
+ylim = c(min(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.arb, deteccion.bos, deteccion.pot),
+max(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot) +20),
+main = "Deteccion del SI chd",
+xlab = "Numero de iteración",
+ylab = "Cantidad de SI")
+points(deteccion.knn, col = "blue", type = "b")
+points(deteccion.bay, col = "red", type = "b")
+points(deteccion.arb, col = "green", type = "b")
+points(deteccion.bos, col = "black", type = "b")
+points(deteccion.pot, col = "orange", type = "b")
+legend("topright", legend = c("SVM", "KKNN", "Bayes",
+"Árbol", "Bosque", "Potenciación"),
+col = c("magenta", "blue", "red", "black", "orange"), lty = 1, lwd = 1)
+plot(deteccion.svm, col = "magenta", type = "b",
+ylim = c(min(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.arb, deteccion.bos, deteccion.pot),
+max(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot) +20),
+main = "Deteccion del SI chd",
+xlab = "Numero de iteración",
+ylab = "Cantidad de SI")
+points(deteccion.knn, col = "blue", type = "b")
+points(deteccion.bay, col = "red", type = "b")
+points(deteccion.arb, col = "green", type = "b")
+points(deteccion.bos, col = "black", type = "b")
+points(deteccion.pot, col = "orange", type = "b")
+legend("topright", legend = c("SVM", "KKNN", "Bayes",
+"Árbol", "Bosque", "Potenciación"),
+col = c("magenta", "blue", "red", "black", "orange"), lty = 1, lwd = 1)
+plot(deteccion.svm, col = "magenta", type = "b",
+ylim = c(min(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.arb, deteccion.bos, deteccion.pot),
+max(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot) +30),
+main = "Deteccion del SI chd",
+xlab = "Numero de iteración",
+ylab = "Cantidad de SI")
+points(deteccion.knn, col = "blue", type = "b")
+points(deteccion.bay, col = "red", type = "b")
+points(deteccion.arb, col = "green", type = "b")
+points(deteccion.bos, col = "black", type = "b")
+points(deteccion.pot, col = "orange", type = "b")
+legend("topright", legend = c("SVM", "KKNN", "Bayes",
+"Árbol", "Bosque", "Potenciación"),
+col = c("magenta", "blue", "red", "black", "orange"), lty = 1, lwd = 1)
+modelo <- neuralnet(chd~., data = taprendizaje, hidden = 50)
+modelo <- neuralnet(chd~, data = taprendizaje, hidden = 50)
+modelo <- neuralnet(chd~., data = taprendizaje, hidden = 50)
+modelo <- neuralnet(chd ~ ., data = taprendizaje, hidden = 50)
+dim(datos)
+var.ind <- colnames(datos)[1:9]
+var.dep <- colnames(datos)[10]
+modelo <- randomForest(chd~., data = taprendizaje, ntree = 400, mtry = 3)
+var.ind
+var.dep
+ind <- paste(var.ind, collapse = ' + ')
+dep <- paste(var.dep, collapse = ' + ')
+ind
+dep
+formula <- paste(var.dep, "~ ", ind)
+formula <- as.formula(formula)
+formula
+modelo <- neuralnet(formula, data = taprendizaje, hidden = 60)
+modelo <- neuralnet(formula = form, data = taprendizaje, hidden = 60)
+form <- paste(var.dep, "~ ", ind)
+form <- as.formula(form)
+modelo <- neuralnet(formula = form, data = taprendizaje, hidden = 60)
+modelo <- neuralnet(form, data = taprendizaje,
+hidden = 60, linear.output = FALSE)
+form
+head(datos)
+library(rattle)
+rattle()
+model.matrix(taprendizaje)
+model.matrix(~ ind)
+model.matrix(~ ind, data = taprendizaje)
+model.matrix(~ ind + var.dep, data = taprendizaje)
+var.ind <- colnames(datos)[1:9]
+var.ind
+model.matrix(~famhist, data = taprendizaje)
+head(taprendizaje)
+taprendizaje$famhist <- model.matrix(~famhist, data = aprendizaje)
+taprendizaje$famhist <- model.matrix(~famhist, data = taprendizaje)
+taprendizaje
+head(taprendizaje)
+taprendizaje$famhist <- model.matrix(~famhist, data = taprendizaje)[2]
+head(taprendizaje)
+model.matrix(~famhist, data = taprendizaje)[2]
+model.matrix(~famhist, data = taprendizaje)[,2]
+model.matrix(~famhist, data = taprendizaje)
+taprendizaje <- datos[-muestra,] #Entrenamos con el resto de los datos
+model.matrix(~famhist, data = taprendizaje)
+model.matrix(~famhist, data = taprendizaje)$famhistPresent
+dim(model.matrix(~famhist, data = taprendizaje))
+model.matrix(~famhist, data = taprendizaje)[,2]
+model.matrix(~famhist, data = taprendizaje)[2,2]
+taprendizaje$famhist <- model.matrix(~famhist, data = taprendizaje)[,2]
+head(taprendizaje)
+binaryfamhist <- model.matrix(~famhist, data = taprendizaje)
+taprendizaje$famhist <- binaryfamhist[,2]
+datosred <- datos
+binfamhist <- model.matrix(~famhist, data = datos)
+datosred$famhis <- binfamhist[,2]
+datosred <- scale(datosred)
+datosred <- datos
+binfamhist <- model.matrix(~famhist, data = datosred)
+datosred$famhis <- binfamhist[,2]
+datosred <- scale(datosred)
+binchd <- model.matrix(~chd, data = datosred)
+head(binchd)
+head(datosred)
+binfamhist <- model.matrix(~famhist, data = datosred)
+binchd <- model.matrix(~chd, data = datosred)
+datosred$famhis <- binfamhist[,2]
+datosred$chd <- binchd[,2]
+datosred <- scale(datosred)
+head(datos)
+head(datosred)
+binfamhist <- model.matrix(~famhist, data = datosred)
+binchd <- model.matrix(~chd, data = datosred)
+datosred$famhis <- binfamhist[,2]
+datosred$chd <- binchd[,2]
+head(datosred)
+datosred <- datos
+binfamhist <- model.matrix(~famhist, data = datosred)
+binchd <- model.matrix(~chd, data = datosred)
+datosred$famhist <- binfamhist[,2]
+datosred$chd <- binchd[,2]
+datosred <- scale(datosred)
+head(datosred)
+ttestred <- datosred[muestra,]
+taprendred <- datosred[-muestra,]
+modelo <- neuralnet(form, data = taprendizaje,
+hidden = 60, linear.output = FALSE)
+modelo <- neuralnet(form, data = taprendred,
+hidden = 60, linear.output = FALSE)
+head(datos)
+head(datosred)
+datosred[,-c(1,2,3)]
+head(datos)
+datosred[,-c(5,9)] <- scale(datosred[,-c(5,9)])
+datosred <- datos
+datosred[,-c(5,9)] <- scale(datosred[,-c(5,9)])
+head(datos[,-c(5,9)])
+datosred <- datos
+datosred[,-c(5,10)] <- scale(datosred[,-c(5,10)])
+binfamhist <- model.matrix(~famhist, data = datosred)
+binchd <- model.matrix(~chd, data = datosred)
+datosred$famhist <- binfamhist[,2]
+datosred$chd <- binchd[,2]
+head(datosred)
+head(datos)
+ttestred <- datosred[muestra,]
+taprendred <- datosred[-muestra,]
+modelo <- neuralnet(form, data = taprendred,
+hidden = 60, linear.output = FALSE)
+prediccion <- predic(modelo, ttestred)
+prediccion <- predict(modelo, ttestred)
+prediccion <- compute(modelo, ttestred)
+prediccion <- compute(modelo, ttestred[,-10])
+prediccion$net.result <- apply(prediccion$net.result, 2, round)
+prediccion$net.result
+head(prediccion$net.result)
+head(ttestred)
+datosred <- datos
+datosred[,-c(5,10)] <- scale(datosred[,-c(5,10)])
+binfamhist <- model.matrix(~famhist, data = datosred)
+binchd <- model.matrix(~chd, data = datosred)
+datosred$famhist <- binfamhist[,2]
+datosred[,-c(10)] <- scale(datosred[,-c(10)])
+datosred <- datos
+datosred[,-c(5,10)] <- scale(datosred[,-c(5,10)])
+binfamhist <- model.matrix(~famhist, data = datosred)
+datosred$famhist <- binfamhist[,2]
+datosred[,-c(10)] <- scale(datosred[,-c(10)])
+binchd <- model.matrix(~chd, data = datosred)
+datosred$chd <- binchd[,2]
+ttestred <- datosred[muestra,]
+taprendred <- datosred[-muestra,]
+modelo <- neuralnet(form, data = taprendred,
+hidden = 60, linear.output = FALSE)
+prediccion <- compute(modelo, ttestred[,-10])
+prediccion$net.result <- apply(prediccion$net.result, 2, round)
+head(prediccion$net.result)
+head(ttestred$chd)
+Actual <- ttestred$chd
+MC <- table(Actual, prediccion$net.result)
+MC
+head(datos)
+head(datosred)
+deteccion.svm <- rep(0,n.promedio)
+deteccion.knn <- rep(0,n.promedio)
+deteccion.bay <- rep(0,n.promedio)
+deteccion.arb <- rep(0,n.promedio)
+deteccion.bos <- rep(0,n.promedio)
+deteccion.pot <- rep(0,n.promedio)
+deteccion.rna <- rep(0,n.promedio)
+set.seed(20)
+for(i in 1:n.promedio){
+grupos <- createFolds(1:n, n.grupos) #crea los 6 grupos
+svm <- 0
+knn <- 0
+bay <- 0
+arb <- 0
+bos <- 0
+pot <- 0
+rna <- 0
+for(k in 1:n.grupos){
+muestra <- grupos[[k]] #Tomamos como muestra cada grupo
+ttesting <- datos[muestra,] #Testeamos con los datos de la muestra
+taprendizaje <- datos[-muestra,] #Entrenamos con el resto de los datos
+#Modelo Máquina de soporte vectorial
+modelo <- svm(chd~., data = taprendizaje, kernel = "linear")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+svm <- svm + MC[2,2]
+ind[k] <- MC[2,2]
+#Modelo K vecinos más cercanos
+modelo <- train.kknn(chd~., data = taprendizaje, kmax = 7)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+knn <- knn + MC[2,2]
+#Modelo Bayes
+modelo <- naiveBayes(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+bay <- bay + MC[2,2]
+#Modelo Árbol
+modelo <- rpart(chd~., data = taprendizaje)
+prediccion <- predict(modelo, ttesting, type = "class")
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+arb <- arb + MC[2,2]
+#Modelo Bosques
+modelo <- randomForest(chd~., data = taprendizaje, ntree = 400, mtry = 3)
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+bos <- bos + MC[2,2]
+#Modelo Potenciación
+modelo<- ada(chd~., data = taprendizaje, iter=20, type="real")
+prediccion <- predict(modelo, ttesting)
+Actual <- ttesting$chd
+MC <- table(Actual, prediccion)
+pot <- pot + MC[2,2]
+#Modelo Red neuronal
+var.ind <- colnames(datos)[1:9]
+var.dep <- colnames(datos)[10]
+ind <- paste(var.ind, collapse = ' + ')
+form <- paste(var.dep, "~ ", ind)
+form <- as.formula(form)
+datosred <- datos
+datosred[,-c(5,10)] <- scale(datosred[,-c(5,10)])
+binfamhist <- model.matrix(~famhist, data = datosred)
+datosred$famhist <- binfamhist[,2]
+datosred[,-c(10)] <- scale(datosred[,-c(10)])
+binchd <- model.matrix(~chd, data = datosred)
+datosred$chd <- binchd[,2]
+ttestred <- datosred[muestra,]
+taprendred <- datosred[-muestra,]
+modelo <- neuralnet(form, data = taprendred,
+hidden = 60, linear.output = FALSE)
+prediccion <- compute(modelo, ttestred[,-10])
+prediccion$net.result <- apply(prediccion$net.result, 2, round)
+Actual <- ttestred$chd
+MC <- table(Actual, prediccion$net.result)
+rna <- rna + MC[2,2]
+}
+deteccion.svm[i] <- svm
+deteccion.knn[i] <- knn
+deteccion.bay[i] <- bay
+deteccion.arb[i] <- arb
+deteccion.bos[i] <- bos
+deteccion.pot[i] <- pot
+deteccion.rna[i] <- rna
+}
+plot(deteccion.svm, col = "magenta", type = "b",
+ylim = c(min(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.arb, deteccion.bos, deteccion.pot),
+max(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot, deteccion.rna) +40),
+main = "Deteccion del SI chd",
+xlab = "Numero de iteración",
+ylab = "Cantidad de SI")
+points(deteccion.knn, col = "blue", type = "b")
+points(deteccion.bay, col = "red", type = "b")
+points(deteccion.arb, col = "green", type = "b")
+points(deteccion.bos, col = "black", type = "b")
+points(deteccion.pot, col = "orange", type = "b")
+points(deteccion.rna, col = "brown", type = "b")
+legend("topright", legend = c("SVM", "KKNN", "Bayes",
+"Árbol", "Bosque",
+"Potenciación", "Red neuronal"),
+col = c("magenta", "blue", "red", "black",
+"orange", "brown"), lty = 1, lwd = 1)
+help(legend)
+legend("topright", legend = c("SVM", "KKNN", "Bayes",
+"Árbol", "Bosque",
+"Potenciación", "Red neuronal"),
+col = c("magenta", "blue", "red", "black",
+"orange", "brown"), lty = 1, lwd = 1,
+cex = 0.8)
+plot(deteccion.svm, col = "magenta", type = "b",
+ylim = c(min(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.arb, deteccion.bos, deteccion.pot),
+max(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot, deteccion.rna) +40),
+main = "Deteccion del SI chd",
+xlab = "Numero de iteración",
+ylab = "Cantidad de SI")
+points(deteccion.knn, col = "blue", type = "b")
+points(deteccion.bay, col = "red", type = "b")
+points(deteccion.arb, col = "green", type = "b")
+points(deteccion.bos, col = "black", type = "b")
+points(deteccion.pot, col = "orange", type = "b")
+points(deteccion.rna, col = "brown", type = "b")
+legend("topright", legend = c("SVM", "KKNN", "Bayes",
+"Árbol", "Bosque",
+"Potenciación", "Red neuronal"),
+col = c("magenta", "blue", "red", "black",
+"orange", "brown"), lty = 1, lwd = 1,
+cex = 0.8)
+plot(deteccion.svm, col = "magenta", type = "b",
+ylim = c(min(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.arb, deteccion.bos, deteccion.pot),
+max(deteccion.svm, deteccion.knn, deteccion.bay,
+deteccion.bos, deteccion.pot, deteccion.rna) +40),
+main = "Deteccion del SI chd",
+xlab = "Numero de iteración",
+ylab = "Cantidad de SI")
+points(deteccion.knn, col = "blue", type = "b")
+points(deteccion.bay, col = "red", type = "b")
+points(deteccion.arb, col = "green", type = "b")
+points(deteccion.bos, col = "black", type = "b")
+points(deteccion.pot, col = "orange", type = "b")
+points(deteccion.rna, col = "brown", type = "b")
+legend("topright", legend = c("SVM", "KKNN", "Bayes",
+"Árbol", "Bosque",
+"Potenciación", "Red neuronal"),
+col = c("magenta", "blue", "red", "green", "black",
+"orange", "brown"), lty = 1, lwd = 1,
+cex = 0.8)

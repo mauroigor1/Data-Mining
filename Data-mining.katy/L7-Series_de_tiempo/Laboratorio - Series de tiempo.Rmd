@@ -1,0 +1,677 @@
+---
+title: "Laboratorio - Series de tiempo"
+author: "Sebastian Niklitschek-Soto"
+date: "12 de mayo del 2017"
+output: html_document
+---
+
+```{r, echo=FALSE}
+suppressMessages(setwd("~/Dropbox/Cursos UdeC/Cursos pregrado/Data Mining/Series de tiempo/Laboratorio"))
+#suppressMessages(setwd('C:/Users/COMPUTER/Google Drive/Cursos UdeC/Data Mining/Curso experto en mineria de Datos/Series de Tiempo/Analisis preliminar de una serie de tiempo'))
+#setwd('C:/Users/Lenovo/Google Drive/Cursos UdeC/Data Mining/Curso experto en mineria de datos/Series de Tiempo/Analisis preliminar de una serie de tiempo')
+```
+
+
+# Ejercicio 1
+1.a) Se carga la informacion de los cajeros 108 al 116,
+
+```{r}
+Caj108<-read.csv("cajero108.csv",header=F,dec=".",sep=";") 
+Caj109<-read.csv("cajero109.csv",header=F,dec=".",sep=";") 
+Caj110<-read.csv("cajero110.csv",header=F,dec=".",sep=";") 
+Caj111<-read.csv("cajero111.csv",header=F,dec=".",sep=";") 
+Caj112<-read.csv("cajero112.csv",header=F,dec=".",sep=";") 
+Caj113<-read.csv("cajero113.csv",header=F,dec=".",sep=";") 
+Caj114<-read.csv("cajero114.csv",header=F,dec=".",sep=";") 
+Caj115<-read.csv("cajero115.csv",header=F,dec=".",sep=";") 
+Caj116<-read.csv("cajero116.csv",header=F,dec=".",sep=";") 
+dim(Caj108)
+dim(Caj109)
+dim(Caj110)
+dim(Caj111)
+dim(Caj112)
+dim(Caj113)
+dim(Caj114)
+dim(Caj115)
+dim(Caj116)
+```
+
+Convertimos ahora cada una en una serie de tiempo, debemos tener cuidado puesto que las cinco primeras se encuentran como vectores filas,
+
+```{r}
+Caj108<-t(Caj108)
+Caj109<-t(Caj109)
+Caj110<-t(Caj110)
+Caj111<-t(Caj111)
+Caj112<-t(Caj112)
+Caj108<-ts(Caj108[,1],start=c(2008,1),freq=365)
+Caj109<-ts(Caj109[,1],start=c(2008,1),freq=365)
+Caj110<-ts(Caj110[,1],start=c(2008,1),freq=365)
+Caj111<-ts(Caj111[,1],start=c(2008,1),freq=365)
+Caj112<-ts(Caj112[,1],start=c(2008,1),freq=365)
+Caj113<-ts(Caj113[,1],start=c(2008,1),freq=365)
+Caj114<-ts(Caj114[,1],start=c(2008,1),freq=365)
+Caj115<-ts(Caj115[,1],start=c(2008,1),freq=365)
+Caj116<-ts(Caj116[,1],start=c(2008,1),freq=365)
+str(Caj108)
+str(Caj109)
+str(Caj110)
+str(Caj111)
+str(Caj112)
+str(Caj113)
+str(Caj114)
+str(Caj115)
+str(Caj116)
+```
+
+# Ejercicio 2
+
+Cargamos el paquete itsmr,
+
+```{r}
+library(itsmr)
+str(dowj)
+str(strikes)
+str(Sunspots)
+str(wine)
+```
+
+Convertimos cada uno de los vectores de datos en series de tiempo. En este caso todos resultan ser vectores columnas y no exite informacion respecto a si las fechas se encuentran en listadas en orden creciente o decreciente por lo que se supondra que el orden de las fechas es exactamente el requerido
+
+```{r}
+tdowj<-ts(dowj, start=c(1972, 241), freq=365)
+plot(tdowj)
+tstrikes<- ts(strikes, start=1951, end=1980, freq=1)
+plot(tstrikes)
+tSunspots<- ts(Sunspots, start=1870, end=1979, freq=1)
+plot(tSunspots)
+twine<- ts(wine, start=c(1980,1), end=c(1991,10), freq=12)
+plot(twine)
+str(tdowj)
+str(tstrikes)
+str(tSunspots)
+str(twine)
+```
+Notemos que en el primer caso se utilizaron los par?metros $1972$ y $241$ para la fecha de iniciio de la serie, esto debido a que el 28 de agosto corresponde al dia 241 del a\~no.
+
+# Ejercicio 3
+
+Cargamos la tabla de datos DJTable.csv,
+
+```{r}
+DJTable<-read.csv("DJTable.csv",header=T,dec=".",sep=";") 
+tail(DJTable)
+```
+
+Vemos que las fechas estan en orden decreciente por lo que debemos invertirlas, para ello,
+
+```{r}
+head(DJTable)
+CSCO<-rev(DJTable$CSCO)
+CVX<-rev(DJTable$CVX)
+DD<-rev(DJTable$DD)
+```
+
+Por ultimo las convertimos en series de tiempo,
+
+```{r}
+CSCO<-ts(CSCO, start=c(2010, 1), freq=365)
+CVX<-ts(CVX, start=c(2010, 1), freq=365)
+DD<-ts(DD, start=c(2010, 1), freq=365)
+str(CSCO)
+str(CVX)
+str(DD)
+```
+
+# Ejercicio 4
+
+Cargamos la informacion del cajero 103,
+
+```{r}
+Caj103<-read.csv("cajero103.csv",header=F,dec=".",sep=";")
+dim(Caj103)
+```
+
+Debemos transformar a Caj103 en un vector columna, para ello
+
+```{r}
+Caj103<-as.matrix(Caj103)  ### Pues Caj103 es un DataFrame
+Caj103<-as.vector(Caj103)
+length(Caj103)
+```
+
+Convertimos ahora el vector en una serie de tiempo
+
+```{r}
+Caj103<-ts(Caj103,start=c(1998,1),freq=365) 
+plot(Caj103)
+```
+
+Para verificar la normalidad graficamos el histograma para los residuos,
+
+```{r}
+hist(diff(Caj103),prob=T,ylim=c(0,2.5e-07),col="red")
+lines(density(diff(Caj103)),lwd=2) 
+mu<-mean(diff(Caj103)) 
+sigma<-sd(diff(Caj103)) 
+x<-seq(-1e+07,1e+07,length=1000) 
+y<-dnorm(x,mu,sigma) 
+lines(x,y,lwd=2,col="blue")
+```
+
+Vemos de la grafica que el supuesto de normalidad se verifica aproximadamente bien.
+
+# Ejercicio 5
+
+Realizamos el suavizamiento de la serie para $a=4$, $a=6$ y $a=10$,
+
+```{r}
+plot(Caj103, type="l")
+st.1<- filter(Caj103,filter=rep(1/9,9)) 
+st.2<-filter(Caj103,filter=rep(1/13,13)) 
+st.3<-filter(Caj103,filter=rep(1/21,21)) 
+lines(st.1,col="red") 
+lines(st.2,col="purple") 
+lines(st.3,col="blue")
+```
+
+Esta serie presenta mucha variabilidad, vemos como ella se reduce al hacer el suavizamiento o filtrado.
+
+# Ejercicio 6
+
+Realizamos la dscomposicion de la serie utilizando la funcion stl. Para ello utilizamos la serie de tiempo Caj103 que ya ha sido generada,
+
+```{r}
+DescCaj103<-stl(Caj103,s.window="periodic") 
+head(DescCaj103$time.series)
+plot(DescCaj103)
+```
+
+# Ejercicio 7
+Cargamos el paquete itsmr y cargamos la tabla de datos deaths, 
+
+```{r}
+suppressMessages(library(itsmr))
+str(deaths)
+```
+
+Transformamos ahora la tabla en una serie de tiempo. Es importante recordar que los datos corresponden a muertes accidentales en Estados Unidos entre los a?os $1973$ y $1978$. Dado que la tabla tiene $72$ entradas la frecuencia de losd datos es mensual, por lo tanto la frecuencia es igual a $12$.
+
+```{r}
+Deaths<-ts(deaths, start=c(1973,1), freq=12)
+```
+
+Ahora bien, calculamos primero el peridiograma
+
+```{r}
+res<-spec.pgram(Deaths, log = "no")
+res.ord<-order(res$spec,res$freq,decreasing=TRUE)
+res.ord[1:4]
+```
+
+Vemos que los m?ximos se encuentran en las posiciones $6, 12 y 30$.
+
+```{r}
+max1<-res$freq[6]
+period1<-12/max1
+max2<-res$freq[12]
+period2<-12/max2
+max3<-res$freq[30]
+period3<-12/30
+c(period1,period2,period3)
+res<-spec.pgram(Deaths, log = "no")
+abline(v=max1, lty="dotted",col="red")
+abline(v=max2, lty="dotted",col="blue")
+abline(v=max3, lty="dotted",col="magenta")
+```
+
+Vemos que el primer periodo es $12$, esto justifica el utilizar el modelo SARIMA con perdiodo $12$.
+
+Generamos el modelo y hacmeos la predicci?n. No quedaba claro del enunciado si una predicci?n correspond?a a predecir s?lo un nuevo dato o a realizar una predicci?n a voluntad. En este caso se eligi? predecir un a?o,
+
+```{r}
+fit<-arima(Deaths,order=c(1,2,1),seasonal=list(order=c(2,1,2),period=12)) 
+LH.pred<-predict(fit,n.ahead=12) 
+layout(matrix(c(1,1,2,3),2,2,byrow=TRUE)) 
+plot(Deaths,xlim=c(1973,1980),ylim=c(7000,12000),type="o") 
+lines(LH.pred$pred,col="green",type="o") 
+lines(LH.pred$pred+2*LH.pred$se,col="green",lty=3,type="o") 
+lines(LH.pred$pred-2*LH.pred$se,col="green",lty=3,type="o")
+acf(Deaths,main="Autocorrelaci?n?Simple",col="black",ylim=c(-1,1)) 
+pacf(Deaths,main="Autocorrelaci?n?Parcial",col="black",ylim=c(-1,1))
+```
+
+# Ejercicio 8
+Cargamos la tabla de datos correspondiente al cajero $101$. Recordemos que debemos trasponer este vector de datos para luego transformarlo en una serie de tiempo. La serie comienza el $1$ de enero del a?o $2008$, y tiene frecuencia diaria.
+
+```{r}
+Caj101<-read.csv("Cajero101.csv",header=F,dec=".",sep=";") 
+Caj101<-t(Caj101)#?Matriz?transpuesta 
+Caj101<-ts(Caj101[,1],start=c(2008,1),freq=365)
+plot(Caj101,type="o",col="blue")
+```
+
+Ahora bien, calculamos primero el peridiograma
+
+```{r}
+res<-spec.pgram(Caj101, log = "no")
+res.ord<-order(res$spec,res$freq,decreasing = TRUE)
+res.ord[1:4]
+```
+
+Vemos que los m?ximos se encuentran en las posiciones $101, 439$ y $220$.
+
+```{r}
+max1<-res$freq[101]
+period1<-365/max1
+max2<-res$freq[439]
+period2<-365/max2
+max3<-res$freq[220]
+period3<-365/max3
+c(period1,period2,period3)
+res<-spec.pgram(Caj101, log = "no")
+abline(v=max1, lty="dotted",col="red")
+abline(v=max2, lty="dotted",col="blue")
+abline(v=max3, lty="dotted",col="magenta")
+```
+
+Vemos que el primer periodo es $15$, este es el periodo m?s adecuado. Realizamos la predicci?n ajustando un modelo $SARIMA(1,1,2)(2,1,2)$ con per?odo $15$. 
+
+```{r}
+fit<-arima(Caj101,order=c(1,1,2),seasonal=list(order=c(2,1,2),period=15)) 
+LH.pred<-predict(fit,n.ahead=365) 
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE)) 
+plot(Caj101,xlim=c(2008,2013),ylim=c(min(Caj101)-3500000,max(Caj101)+1000000),type="o") 
+lines(LH.pred$pred,col="green",type="o") 
+lines(LH.pred$pred+2*LH.pred$se,col="green",lty=3,type="o") 
+lines(LH.pred$pred-2*LH.pred$se,col="green",lty=3,type="o")
+acf(Caj101, main="Autocorrelaci?n Simple",col="black",ylim=c(-1,1)) 
+pacf(Caj101,main="Autocorrelaci?n Parcial",col="black",ylim=c(-1,1))
+```
+
+Ahora bien, extraemos los ?ltimos dos meses de la serie,
+
+```{r}
+Caj101<-Caj101[1461:1521]
+Caj101<-ts(Caj101,start=c(2012,2),freq=365)
+plot(Caj101,type="o",col="blue")
+```
+
+
+Ahora bien, calculamos el peridiograma
+
+```{r}
+res<-spec.pgram(Caj101, log = "no")
+res.ord<-order(res$spec,res$freq,decreasing = TRUE)
+res.ord[1:4]
+```
+
+Vemos que los m?ximos se encuentran en las posiciones $2, 18$ y $19$.
+
+```{r}
+max1<-res$freq[2]
+period1<-365/max1
+max2<-res$freq[18]
+period2<-365/max2
+max3<-res$freq[19]
+period3<-365/max3
+c(period1,period2,period3)
+res<-spec.pgram(Caj101, log = "no")
+abline(v=max1, lty="dotted",col="red")
+abline(v=max2, lty="dotted",col="blue")
+abline(v=max3, lty="dotted",col="magenta")
+```
+
+Vemos que el primer periodo es $32$, pero este periodo es demasiado grande dado que los datos corresponden s?lo a dos meses. Por esto se elegir? el siguiente periodo que es iguala $3$.  
+
+```{r}
+fit<-arima(Caj101,order=c(7,1,7),seasonal=list(order=c(2,1,2),period=3)) 
+LH.pred<-predict(fit,n.ahead=30) 
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE)) 
+plot(Caj101,xlim=c(2012,2012.25),ylim=c(min(Caj101)-5000000,max(Caj101)+10000000),type="o") 
+lines(LH.pred$pred,col="green",type="o") 
+lines(LH.pred$pred+2*LH.pred$se,col="green",lty=3,type="o") 
+lines(LH.pred$pred-2*LH.pred$se,col="green",lty=3,type="o")
+acf(Caj101, main="Autocorrelaci?n Simple",col="black",ylim=c(-1,1)) 
+pacf(Caj101,main="Autocorrelaci?n Parcial",col="black",ylim=c(-1,1))
+```
+
+Vemos que en este caso la prediccion parece tener un comportamiento un mas dinamico y no solo a describir la media.
+
+# Ejercicio 9
+
+Comenzaremos por generar las funciones que nos permitir?n calcular los diferentes tipos de error y calibrar el modelo de Holt-Winters. 
+
+La siguiente funci?n nos permitir? calcular diferentes tipos de error, Error Relativo, Error Cuadr?tico Medio, Total de Predicciones Sobre el Valor Real, Error Relativo para las Predicciones por Sobre el Valor Real.
+
+```{r, echo=FALSE}
+ER <- function(Pron,Real) {
+  return(sum(abs(Pron-Real))/abs(sum(Real)))
+}
+
+# mean squared error (MSE)
+ECM<-function(Pred,Real) {
+  N<-length(Real)
+  ss<-sum((Real-Pred)^2)
+  return((1/N)*ss)
+}
+
+PFA <- function(Pron,Real) {
+  Total<-0
+  N<-length(Pron)
+  for(i in 1:N) {
+    if(Pron[i]>=Real[i])
+      Total<-Total+1      
+  }
+  return(Total/N)
+}
+
+PTFA <- function(Pron,Real) {
+  Total<-0
+  SReal<-0
+  N<-length(Pron)
+  for(i in 1:N) {
+    if(Pron[i]>=Real[i]) {
+      Total<-Total+(Pron[i]-Real[i])
+      SReal<-SReal+abs(Real[i])
+    }
+  }
+  return(Total/SReal)
+}
+```
+
+La siguiente funci?n nos permitir? calibrar el modelo de Holt-Winters. Se modific? la funci?n presentada en el curso de modo de elegir el incremento como par?metro de la funci?n.
+
+```{r}
+calibrar<-function(serie.aprendizaje,serie.testing, pot.incremento) {
+  incremento<-10^{pot.incremento}
+  error.c<-Inf
+  alpha.i<-incremento  # alpha no puede ser cero
+  while(alpha.i<=1) {
+    beta.i<-0
+    while(beta.i<=1) {
+      gamma.i<-0
+      while(gamma.i<=1) {
+         mod.i<-HoltWinters(serie.aprendizaje,alpha=alpha.i,beta=beta.i,gamma=gamma.i)
+         res.i<-predict(mod.i,n.ahead=length(serie.testing))
+         error.i<-sqrt(ECM(res.i,serie.testing))
+         if(error.i<error.c) {
+           error.c<-error.i
+           mod.c<-mod.i         
+         }
+         gamma.i<-gamma.i+incremento
+      }
+      beta.i<-beta.i+incremento
+    }
+    alpha.i<-alpha.i+incremento
+  }  
+  return(mod.c)
+}  
+
+```
+
+Cargamos el paquete itsmr y cargamos la tabla de datos deaths, 
+
+```{r}
+suppressMessages(library(itsmr))
+str(deaths)
+```
+
+Transformamos ahora la tabla en una serie de tiempo. Es importante recordar que los datos corresponden a muertes accidentales en Estados Unidos entre los a?os $1973$ y $1978$. Dado que la tabla tiene $72$ entradas la frecuencia de losd datos es mensual, por lo tanto la frecuencia es igual a $12$.
+
+```{r}
+Deaths<-ts(deaths, start=c(1973,1), freq=12)
+```
+
+Construimos las tablas de aprendizaje y prueba, donde esta ?ltima contiene los ?ltimos diez datos:
+```{r}
+Deaths.train<-Deaths[1:62]
+Deaths.train<-ts(Deaths.train, start=c(1973,1), freq=12)
+Deaths.test<-Deaths[63:72]
+Deaths.test<-ts(Deaths.test, start=c(1978,3), freq=12)
+```
+
+Calibramos el moldelo de Holt-Winters para la serie de datos de aprendizaje:
+
+```{r}
+modelo.HW<-calibrar(Deaths.train,Deaths.test, -1)
+modelo.HW
+```
+
+Ahora bien, recordamos de la tarea anterior que el periodo asociado a estos datos es 12. Calibrando el modelo ARIMA mediante el uso de la funci?n $auto.arima$ obtenemos:
+
+```{r}
+suppressMessages(library(forecast))
+auto.arima(Deaths.train)
+```
+
+Donde vemos que los par?metros ?ptimos a utilizar para ajustar el modelo ARIMA son $(0,1,1)(0,1,1)$, construyendo el modelo,
+
+```{r}
+modelo.A<-arima(Deaths.train,order=c(0,1,1),seasonal=list(order=c(0,1,1),period=12)) 
+```
+
+Generamos $10$ meses de predicciones utilizando ambos modelos. Primero, la predicci?n correspondiente al m?todo de Holt-Winters,
+
+```{r}
+predict.HW<-predict(modelo.HW,n.ahead=10)
+plot(predict.HW,xlim=c(1973,1979), ylim=c(6800, 11500), main = "Predicciones mediante modelo de Holt-Winters", col=2)
+lines(Deaths.train,col=1)
+```
+
+y la predicci?n correspondiente al modelo SARIMA deperiodo $12$ y par?metros $()()$
+```{r}
+predict.A<-predict(modelo.A,n.ahead=10)
+plot(predict.A$pred,xlim=c(1973,1979), ylim=c(6800, 11500), main = "Predicciones mediante modelo SARIMA", col = 2)
+lines(Deaths.train,col=1)
+```
+
+Calculamos ahora el Error Cuadr?tico Medio asociado a cada predicci?n:
+
+```{r}
+ECM.HW<-sqrt(ECM(predict.HW,Deaths.test))
+ECM.A<-sqrt(ECM(predict.A$pred,Deaths.test))
+Errores.ECM<-c(ECM.HW, ECM.A)
+names(Errores.ECM)<-c("Holt-Winters", "SARIMA")
+Errores.ECM
+```
+
+Vemos claramente que el modelo de Holt-Winters es mejor que el SARIMA, esto puesto que fue calibrado precisamente para minimizar el error cuadr?tico medio. Si utiliz?ramos otra medida de error podr?a darse una situaci?n diferente. De todas formas, la misma funci?n podria utilizarse para minimizar otros tipos de error.
+
+Ahora bien, el Error Relativo para ambos modelos est? dado por:
+
+```{r}
+ER.HW<-ER(predict.HW,Deaths.test)
+ER.A<-ER(predict.A$pred,Deaths.test)
+Errores.R<-c(ER.HW, ER.A)
+names(Errores.R)<-c("Holt-Winters", "SARIMA")
+Errores.R
+```
+
+En este caso observamos tambi?n que es el modelo de Holt-Winters el que tiene asociado un menor error. El mejor modelo basado en este criterio es entonces el modelo de Holt-Winters.
+
+
+# Ejercicio 10
+
+Cargamos la tabla de datos correspondiente al cajero $101$. Recordemos que debemos trasponer este vector de datos para luego transformarlo en una serie de tiempo. La serie comienza el $1$ de enero del a?o $2008$, y tiene frecuencia diaria.
+
+```{r}
+Caj101<-read.csv("Cajero101.csv",header=F,dec=".",sep=";") 
+Caj101<-t(Caj101)#?Matriz?transpuesta 
+Caj101<-ts(Caj101[,1],start=c(2008,1),freq=365)
+plot(Caj101,type="o",col="blue")
+str(Caj101)
+```
+
+Repetimos los pasos seguidos en el ejercicio anterior, esto es, construimos las tablas de aprendizaje y prueba, donde esta ?ltima contiene los ?ltimos 31 d?as:
+```{r}
+Caj101.train<-Caj101[1:1490]
+Caj101.train<-ts(Caj101.train, start=c(2008,1), freq=365)
+Caj101.test<-Caj101[1491:1521]
+Caj101.test<-ts(Caj101.test, start=c(2012,30), freq=365)
+```
+
+Calibramos el moldelo de Holt-Winters para la serie de datos de aprendizaje:
+
+```{r}
+modelo.HW<-calibrar(Caj101.train,Caj101.test, -1)
+modelo.HW
+```
+
+Ahora bien, recordamos de la tarea anterior que el periodo asociado a estos datos es $15$. Calibrando el modelo ARIMA mediante el uso de la funci?n $auto.arima$ obtenemos:
+
+```{r}
+suppressMessages(library(forecast))
+auto.arima(Caj101.train)
+```
+
+Donde vemos que los par?metros ?ptimos a utilizar para ajustar el modelo ARIMA son $(2,1,2)(2,1,2)$, construyendo el modelo,
+
+```{r}
+modelo.A<-arima(Caj101.train,order=c(2,1,2),seasonal=list(order=c(2,1,2),period=15)) 
+```
+
+Generamos $31$ d?as de predicciones utilizando ambos modelos. Primero, la predicci?n correspondiente al m?todo de Holt-Winters,
+
+```{r}
+predict.HW<-predict(modelo.HW,n.ahead=31)
+plot(Caj101.train,xlim=c(2008,2012.1), main = "Predicciones mediante modelo de Holt-Winters")
+lines(predict.HW,col=2)
+```
+
+y la predicci?n correspondiente al modelo SARIMA de periodo $15$ y par?metros $(2,1,2)(2,1,2)$
+```{r}
+predict.A<-predict(modelo.A,n.ahead=10)
+plot(Caj101.train,xlim=c(2008,2012.1), main = "Predicciones mediante modelo SARIMA", col = 1)
+lines(predict.A$pred,col=2)
+```
+
+Calculamos ahora el Error Cuadr?tico Medio asociado a cada predicci?n:
+
+```{r}
+ECM.HW<-sqrt(ECM(predict.HW,Caj101.test))
+ECM.A<-sqrt(ECM(predict.A$pred,Caj101.test))
+Errores.ECM<-c(ECM.HW, ECM.A)
+names(Errores.ECM)<-c("Holt-Winters", "SARIMA")
+Errores.ECM
+```
+
+Vemos claramente que el modelo SARIMA tiene un error cuadr?tico medio m?s bajo que el de Holt-Winters.
+
+Ahora bien, el Error Relativo para ambos modelos est? dado por:
+
+```{r}
+ER.HW<-ER(predict.HW,Caj101.test)
+ER.A<-ER(predict.A$pred,Caj101.test)
+Errores.R<-c(ER.HW, ER.A)
+names(Errores.R)<-c("Holt-Winters", "SARIMA")
+Errores.R
+```
+
+En este caso observamos que, al igual que en el caso del error cuadr?tico medio, el error relativo asociado al modelo SARIMA es menor que el asociado al m?todo de Holt-Winters
+
+Basados en ambos errores, el modelo SARIMA parece ser el m?s adecuado para modelar estos datos. Se elije entonces este modelo para realizar la predicci?n para siete d?as. Debemos primero generar el modelo para todo el conjunto de datos,
+
+```{r}
+modelo.A<-arima(Caj101,order=c(2,1,2),seasonal=list(order=c(2,1,2),period=15)) 
+```
+
+Ahora realizamos la predicci?n para siete d?as,
+  
+```{r}
+Caj101.pred<-predict(modelo.A,n.ahead=7) 
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE)) 
+plot(Caj101,xlim=c(2008,2012.1),ylim=c(0, max(Caj101)+1000000),type="o")
+lines(Caj101.pred$pred,col=2)
+```
+
+Una idea, a priori, respecto a la calidad de esta predicci?n puede generarse gracias al c?lculo de los tipos de error asociados al modelo. Este c?lculo no utiliza los valores reales para los siete d?as predichos y por ende no es una medida necesariamente precisa. A posteriori, esto es, una vez conocido el valor de la serie para algunos de estos siete d?as, podr?a calcularse alg?n estimado del error para evaluar la predicci?n en base a esta nueva informaci?n y con ello decidir si esta predicci?n ha sido pertinente o no. Recordemos que lo ?ptimo seria actualizar las predicciones cada vez que contemos con nueva informaci?n puesto que mientras m?s datos sean predecidos, mayor es la varianza asociada a esta predicci?n y por ende mayor probabilidad de que el valor predicho se encuentre lejos del valor real.
+
+
+# Ejercicio 11
+
+Cargamos la tabla de datos del Dow Jones (DJTable.csv), y la tabla traspuesta (DJTableTranspose.csv),
+
+```{r}
+DJTable<-read.csv("DJTable.csv",header=T,dec=".",sep=";")
+DJTableTranspose<-read.csv("DJTableTranspose.csv",header=T,dec=".",sep=";")
+```
+
+Realizamos un ACP para la tabla DJTable,
+
+```{r}
+suppressMessages(library(FactoMineR))
+res<-PCA(DJTable[,-1], scale.unit=TRUE, ncp=6, graph = FALSE)
+plot(res, axes=c(1, 2), choix="ind", col.ind="Red",new.plot=TRUE)
+plot(res, axes=c(1, 2), choix="var", col.var="blue",new.plot=TRUE)
+```
+
+y para la tabla traspuesta,
+
+```{r}
+res<-PCA(DJTableTranspose[,-1], scale.unit=TRUE, ncp=6, graph = FALSE)
+plot(res, axes=c(1, 2), choix="ind", col.ind="Red",new.plot=TRUE)
+plot(res, axes=c(1, 2), choix="var", col.var="blue",new.plot=TRUE)
+```
+
+En el primer caso detectamos al menos tres grupos diferentes. Mirando el c?rculo de correlaciones vemos que cada uno corresponde a combinaciones de indicadores que tomaron valores altos ese d?a. Dado que en este caso los datos corresponden a valores de $30$ indocadores econ?micos, no es sencillo realizar la interpretaci?n puesto que aparecen muchos efectos posiblemente mezclados. 
+
+En el segundo caso, se ha realizado un ACP tomando como atributos a la fecha en la que los correspondiente indicadores econ?micos tomaron los correspondientes valores. En este caso, pueden identificarse dos marcados grupos, el compuesto por el indicador $IBM$ y otro compuesto por los dem?s. Analizando el c?rculo de correlaciones, concluimos que el primer grupo est? conformado por un indicador que toma valores altos en todos los d?as.
+
+# Ejercicio 12
+
+Recordemos que los datos ya fueron cargados en memoria durante la resoluci?n del ejercico anterior. En este caso, realizamos clasificaci?n jer?rquica utilizando el paquete dtw,
+
+```{r}
+suppressWarnings(suppressMessages(library(dtw)))
+suppressWarnings(suppressMessages(library(rattle)))
+clust.series <- hclust(dist(DJTable[,-1],method="DTW"), method="average")
+par(mfrow=c(1,1))
+plot(clust.series)
+```
+
+Graficamos ahora los centros de gravedad para los tres grupos,
+
+```{r}
+centros<-centers.hclust(DJTable[,-1],clust.series,nclust=3,use.median=FALSE)
+par(mfrow=c(3,1))
+plot(centros[1,],type="o")
+plot(centros[2,],type="o")
+plot(centros[3,],type="o")
+```
+
+Las gr?ficas parecen ser bastante similares, dado que la escala de las gr?ficas es diferente, se mostrar?n en el mismo plot de modo de poder compararlas de forma m?s objetiva
+
+```{r}
+par(mfrow=c(1,1))
+plot(centros[1,],type="o")
+lines(centros[2,],type="o", col=2)
+lines(centros[3,],type="o", col=3)
+```
+
+Vemos que el primer cl?ster est? formado por aquellas fechas en las que los indicadores $CAT$, $CVX$, $IBM$, $KO$, $MCD$ y $MMM$ tomaron valores considerablemente m?s altos. El segundo cl?ster est? formado por aquellas fechas en las que los indicadores $AA$, $PFE$, $UNH$, $VZ$, $WMT$ y $XOM$ alcanzaron los valores m?s bajos, por ?ltimo, el tercer cl?ster est? formado por aquellas fechas en las que el indicador $MSFT$ tom? el valor m?s alto y los indicadores $DD$ y $MCD$ el valor m?s bajo, los dem?s valores son bastante similares a los del segundo cl?ster.
+
+# Ejecricio 13
+
+Aplicamos el m?todo de K-medias para las series de tiempo del Dow Jones con tres cl?sters,
+
+```{r}
+grupos<-kmeans(DJTable[,-1],3,iter.max = 1000)
+# grupos$cluster
+# grupos$centers
+par(mfrow=c(3,1))
+plot(grupos$centers[1,],type="o")
+plot(grupos$centers[2,],type="o")
+plot(grupos$centers[3,],type="o")
+```
+
+Al igual que en el ejercicio anterior, las gr?ficas parecen ser bastante similares, por lo que se mostrar?n en el mismo plot de modo de poder compararlas de forma m?s objetiva
+
+```{r}
+par(mfrow=c(1,1))
+plot(centros[1,],type="o")
+lines(centros[2,],type="o", col=2)
+lines(centros[3,],type="o", col=3)
+```
+
+El an?lisis en este caso es exactamente igual al hecho en el ejercicio anterior ya que los grupos identificados al utlizar k-means fueron los mismos que utilizando clasificaci?n jer?rquica. Esto es, el primer cl?ster est? formado por aquellas fechas en las que los indicadores $CAT$, $CVX$, $IBM$, $KO$, $MCD$ y $MMM$ tomaron valores considerablemente m?s altos. El segundo cl?ster est? formado por aquellas fechas en las que los indicadores $AA$, $PFE$, $UNH$, $VZ$, $WMT$ y $XOM$ alcanzaron los valores m?s bajos, por ?ltimo, el tercer cl?ster est? formado por aquellas fechas en las que el indicador $MSFT$ tom? el valor m?s alto y los indicadores $DD$ y $MCD$ el valor m?s bajo, los dem?s valores son bastante similares a los del segundo cl?ster.
